@@ -1,0 +1,103 @@
+body {
+  font-family: 'Arial';
+  color: #000000;
+}
+
+ul.arrow {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+ul.arrow li {
+  background-image: url(image_path('bullet-arrow.png'));
+  background-repeat: no-repeat;
+  background-position: 0px 2px;
+  margin-bottom:15px;
+  padding-left: 14px;
+}
+
+a, a:hover {
+  color: #000000;
+}
+
+.order-colors { float: left; text-align:left; }
+.order-colors p { font-size:12px; }
+.colorpicker { height:200px;width:270px;position:relative;margin:15px 0 5px 0; }
+.colorbox { position:absolute;bottom:8px;left:9px; } 
+
+.jumbotron {
+  color: #fff;
+  background-color: #000;
+}
+
+.navbar-brand {
+  padding-top: 14px;
+  padding-bottom: 0px;
+}
+
+.navbar-nav {
+  padding-top: 10px;
+}
+
+.navbar-right {
+  padding: 8px 0;
+}
+
+#checkoutForm,
+.checkoutForm {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+#checkoutForm textarea,
+.checkoutForm textarea {
+  color: #000000;
+}
+
+.comparision table,
+.comparision th,
+.comparision td {
+  border: 1px solid black;
+}
+
+// http://css3button.net/118297
+a.orderNowButton,
+button.orderNowButton {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  color: #dddddd;
+  padding: 6px 28px;
+
+  background: #ff2819; /*fallback for non-CSS3 browsers*/
+  background: -webkit-gradient(linear, left top, left bottom, from(#ff2819), to(#ab0000));
+  background: -webkit-linear-gradient(#ff2819, #ab0000); /*new webkit*/
+  background: -moz-linear-gradient(top, #ff2819 0%, #ab0000); /*gecko*/
+  background: -ms-linear-gradient(#ff2819, #ab0000); /*IE10*/
+  background: -o-linear-gradient(#ff2819, #ab0000); /*opera 11.10+*/
+  background: linear-gradient(#ff2819, #ab0000); /*future CSS3 browsers*/
+
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+  border-radius: 30px;
+  border: 8px solid #dddddd;
+  -moz-box-shadow:
+    1px 1px 1px rgba(000,000,000,0.8),
+    inset 0px 0px 1px rgba(255,255,255,0.7);
+  -webkit-box-shadow:
+    1px 1px 1px rgba(000,000,000,0.8),
+    inset 0px 0px 1px rgba(255,255,255,0.7);
+  box-shadow:
+    1px 1px 1px rgba(000,000,000,0.8),
+    inset 0px 0px 1px rgba(255,255,255,0.7);
+  text-shadow:
+    0px -1px 0px rgba(000,000,000,0.4),
+    0px 1px 0px rgba(255,255,255,0.3);
+}
+
+a.orderNowButton:hover,
+button.orderNowButton:hover {
+  color: #ffffff;
+  border: 8px solid #ffffff;
+  text-decoration: none;
+}

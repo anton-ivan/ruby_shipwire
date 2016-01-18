@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HAIR ILLUSION OFFICIAL WEBSITE.</title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <a class="sr-only" href="#content">Skip to main content</a>
+  
+  <div class="outWrap" id="hdrWrap">
+  <div class="Wrap">
+    <h1><a href="/" class="assets" title="Hair Illusion™">Hair Illusion™</a></h1>
+    <span id="headline">Instantly conceal thin or bald hair naturally!</span>
+    <ul id="hdrNav">
+      <li><a href="/photos" title="Phots">Phots</a></li>
+      <li><a href="/faq" title="FAQ" style="cursor: pointer;">Faq</a></li>
+      <li><a href="/about_us" title="About" style="cursor: pointer;">About</a></li>
+      
+      <li><a href="/contact_us" title="About" style="cursor: pointer;">Contact Us</a></li>
+      <li><a href="/forum" title="About" style="cursor: pointer;">Forum</a></li>
+      <li><%= link_to 'Distributors', distributors_path, :style=>"font-size:16px;" %></li>  
+    </ul>
+  </div>
+</div>
+
+
+  <%= yield :jumbotron %>
+
+  <div class="container" style="padding: 0px;" id="mainDiv">
+    <%= yield %>
+  </div>
+
+<div id="footerContentWrap">
+  <div id="footerNavWrap">
+    <ul>
+      <li><span><a href="http://hairillusion.dtmstage.com/Index.dtm" title="Hair Illusion™ Official As Seen On TV Home Page">Home</a></span></li>
+      <li><span><a href="http://hairillusion.dtmstage.com/Index.dtm#hair-colors" title="Hair Illusion™ Colors">Colors</a></span></li>
+      <li class="mLink noborder"><span><a href="http://hairillusion.dtmstage.com/Hair-llusion-About.dtm" title="Hair Illusion™ About">About</a></span></li>
+      <li class="mLink noborder"><span><a href="http://hairillusion.dtmstage.com/Hair-llusion-Testimonials.dtm" title="Hair Illusion™ Testimonials">Testimonials</a></span></li>
+      <li class="mLink noborder"><span><a href="http://hairillusion.dtmstage.com/Hair-llusion-Before-Afters.dtm" title="Hair Illusion™ Before &amp; Afters">Before &amp; Afters</a></span></li>
+      <li class="mLink noborder"><span><a href="http://hairillusion.dtmstage.com/Hair-llusion-FAQs.dtm" title="Hair Illusion™ FAQs">FAQs</a></span></li>
+      <li class="footerLast mLink noborder"><span><a href="http://hairillusion.dtmstage.com/Hair-llusion-Customer-Service.dtm" title="Hair Illusion™ Customer Service">Customer Service</a></span></li>
+      <li class="mLink noborder"><span><a href="http://hairillusion.dtmstage.com/#" onclick="window.open(&#39;/StaticContent.txt?filename=ShippingPolicy&amp;isSelfContained=true&#39;,&#39;popup&#39;,&#39;width=475,height=420,toolbars=no,menubar=no,location=no,scrollbars=no,resizable=no,status=no&#39;); return false;" title="Hair Illusion™ Shipping Policy">Shipping Policy</a></span></li>
+      <li class="mLink noborder"><span><a href="http://hairillusion.dtmstage.com/#" onclick="window.open(&#39;/StaticContent.txt?filename=ReturnPolicy&amp;isSelfContained=true&#39;,&#39;popup&#39;,&#39;width=475,height=420,toolbars=no,menubar=no,location=no,scrollbars=no,resizable=no,status=no&#39;); return false;" title="Hair Illusion™ Return Policy">Return Policy</a></span></li>
+      <li class="mLink noborder"><span><a href="http://hairillusion.dtmstage.com/#" onclick="window.open(&#39;/StaticContent.txt?filename=SecurityPolicy&amp;isSelfContained=true&#39;,&#39;popup&#39;,&#39;width=475,height=420,toolbars=no,menubar=no,location=no,scrollbars=no,resizable=no,status=no&#39;); return false;" title="Hair Illusion™ Security Policy">Security Policy</a></span></li>
+      <li class="mLink noborder"><span><a href="http://hairillusion.dtmstage.com/Hair-llusion-Privacy.dtm" title="Hair Illusion™ Privacy Policy">Privacy Policy</a></span></li>
+      <li class="mLink noborder"><span><a href="http://hairillusion.dtmstage.com/Hair-llusion-Sitemap.dtm" title="Hair Illusion™ Site Map">Site Map</a></span></li>
+      <li class="footerLast"><span><a href="http://hairillusion.dtmstage.com/#order" title="Order Hair Illusion™ Now">Order Now!</a></span></li>
+    </ul>
+    <p><span>©2015 Hair Illusion™ All Rights Reserved.</span></p>
+  
+</span></p>
+    
+  </div>
+</div>
+
+  <% if Rails.env.production? %>
+    <!--Start of Zopim Live Chat Script-->
+    <script type="text/javascript">
+      window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+      d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+      _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+      $.src='//v2.zopim.com/?1jfN9XxtmZjA8pZQpW3qGAma6voHqTds';z.t=+new Date;$.
+      type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+    </script>
+    <!--End of Zopim Live Chat Script-->
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-49238798-1', 'buyhairillusion.com');
+      ga('send', 'pageview');
+    </script>
+  <% end %>
+</body>
+</html>

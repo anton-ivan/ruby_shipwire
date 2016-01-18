@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 1
+  order_id: 1
+  start_date: 2015-10-10 19:13:00
+  next_date: 2015-10-10 19:13:00
+
+two:
+  customer_id: 1
+  order_id: 1
+  start_date: 2015-10-10 19:13:00
+  next_date: 2015-10-10 19:13:00

@@ -1,0 +1,38 @@
+<div id="main_div">
+<div class="outWrap outWhite">
+	<div class="Wrap" id="flowWrap"> 
+		<div id="upsellSection"> 
+			<div id="orderCompleteTxt"></div>
+			<div id="upsellImage"> 
+				<%= image_tag 'HS.jpg', class: 'img-responsive' %>
+			</div>
+			<div id="upsellTxt">
+				<h2 class="upsellTitle"> HAIR ILLUSION FIBER HOLD SPRAY </h2>
+				Now available, Hair Illusion Fiber Hold Spray, designed to
+				create a stronger bond between thinning hair and hair fibers.   This
+				special product can be used directly on bald heads and beards when
+				applied first to form a strong bond with Hair Illusion 100% natural hair
+				fibers.  This product is not available in stores, so be sure to add it
+				to your order today for this special internet price of only $19.95 +
+				$3.95 S&amp;H.
+				<div class="clearer"></div>
+				<div class="Quantity">
+					<input id="ActionType0" name="ActionType0" value="0" type="hidden">
+					<input id="ActionCode0" name="ActionCode0" value="HS" type="hidden">
+				</div><!-- END class='Quantity' --><div class="clearer"></div>
+				<h3 class="cta">Let's add this specially designed Fiber Hold Spray to your order, ok?</h3>
+
+				<div class="clearer subclear"></div>
+				<div style="display: inline-block">
+					<%= link_to(image_tag('yes_button.gif'), "#", :onclick=>"onBuyUpsell('Hair Illusion Fiber Hold Spray',1)") %> 
+ 					<input alt="No, Thanks." id="rejectOffer" name="rejectOffer" value="NO"  onclick="onCancelUpsell('spray')" style="display: inline-block;max-width: 155px"> 
+				</div>
+				
+			</div> 
+			<div class="clearer"></div> 
+		</div> 
+		<div class="clearer subclear"></div>
+	</div>
+	<div class="clearer"></div>
+</div>
+</div>

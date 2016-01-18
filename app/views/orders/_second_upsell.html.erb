@@ -1,0 +1,33 @@
+<div class="outWrap outWhite">
+	<div class="Wrap" id="flowWrap">
+		<div id="upsellSection">
+			<div id="orderCompleteTxt"></div>
+			<div id="upsellImage">
+				<%= image_tag 'MRR.jpg', class: 'img-responsive' %>
+			</div>
+			<div id="upsellTxt">
+				<h2 class="upsellTitle"> HAIR ILLUSION HANDHELD MIRROR</h2>
+				Now all you need is a hand held mirror to check your new look.
+				You’ll want to be sure you have perfect coverage and our Hair Illusion
+				Handheld Mirror lets you do that, easily and comfortably, for just
+				$19.95 + $3.95 S&amp;H.  This mirror is made of lightweight and durable
+				materials making it easy to get a 3600 view.
+				<div class="clearer"></div>
+				<div class="Quantity">
+					<input id="ActionType0" name="ActionType0" value="0" type="hidden">
+					<input id="ActionCode0" name="ActionCode0" value="MRR" type="hidden">
+				</div><!-- END class='Quantity' --><div class="clearer"></div>
+				<h3 class="cta">Yes, I would like to add the Hair Illusion Hand Held Mirror!</h3>
+
+				<div class="clearer subclear"></div>
+				<div style="display: inline-block">
+					<%= link_to(image_tag('yes_button.gif'), "#", :onclick=>"onBuyUpsell('Mirror',2)") %>
+					<input alt="No, Thanks." id="rejectOffer" name="rejectOffer" value="NO"  onclick="onCancelUpsell('mirror')" style="display: inline-block;max-width: 155px">
+				</div>
+			</div>
+			<div class="clearer"></div>
+		</div>
+		<div class="clearer subclear"></div>
+	</div>
+	<div class="clearer"></div>
+</div>

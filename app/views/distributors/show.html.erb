@@ -1,0 +1,84 @@
+<div id="checkoutForm" class="row">
+  <div class="col-md-6">
+    <a class="none" id="buynow">&nbsp;</a>
+    <h2>Order Form</h2>
+
+    <%= form_for @order, html: { class: 'form-horizontal' } do |f| %>
+      <%= f.hidden_field :orderer_id %>
+      <table class="table table-bordered table-condensed">
+        <thead>
+          <th>Product</th>
+          <th>Quantity</th>
+        </thead>
+        <tbdoy>
+          <%= f.fields_for :order_items do |oi| %>
+            <tr>
+              <td>
+                <%= oi.object.product.description %>
+                <%= oi.hidden_field :product_id %>
+              </td>
+              <td><%= oi.number_field :quantity, min: 0, step: 1, class: 'form-control required order-quantity', data: { price: @distributor.price / 100.0 } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="payment">
+        <h4>CREDIT CARD INFORMATION</h4>
+        <div class="form-group" >
+          <div class="col-md-offset3 col-md-8">
+            <%= image_tag 'visa_48.png' %>
+            <%= image_tag 'mastercard_48.png' %>
+            <%= image_tag 'discover_48.png' %>
+            <%= image_tag 'amex_48.png' %>
+          </div>
+        </div>
+        <%= fields_for @credit_card do |cc| %>
+          <%= control_group(@credit_card, :name, label: 'Name on Card') do %>
+            <%= cc.text_field :name, class: 'form-control required', autocomplete: :off %>
+          <% end %>
+
+          <%= control_group(@credit_card, :number, label: 'Card Number') do %>
+            <%= cc.number_field :number, class: 'form-control required', autocomplete: :off, :size => 20 %>
+          <% end %>
+
+          <%= control_group(@credit_card, :cvc, label: 'CVC') do %>
+            <div class="row">
+              <div class="col-md-9">
+                <%= cc.number_field :cvc, class: 'form-control required', autocomplete: :off, :size => 4 %>
+              </div>
+              <div class="col-md-3">
+                <%= image_tag 'cvv.png', style: 'position:relative; top:7px;' %>
+              </div>
+            </div>
+          <% end %>
+
+          <%= control_group(@credit_card, :exp_month, label: 'Expiration') do %>
+            <div class="row">
+              <div class="col-md-4">
+                <%= select_month(nil, { :prefix => :credit_card, :field_name => :exp_month, use_month_numbers: true, prompt: 'MM' }, { class: 'form-control required' }) %>
+              </div>
+              <div class="col-md-8">
+                <%= select_year(nil, { :prefix => :credit_card, :field_name => :exp_year, start_year: Time.now.year, end_year: Time.now.year + 10, prompt: 'YYYY' }, { class: 'form-control required' }) %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <div style="text-align:center;" class="col-md-12">
+          <p>Your Total Today is <strong>$<span id="order-total-price">0.00</span></strong></p>
+          <p>Shipping Cost <strong>$<span id="order-shipping-price">0.00</span></strong></p>
+        </div>
+      </div>
+      <div class="form-group">
+        <div style="text-align:center;" class="col-md-12">
+          <%= button_tag(type: 'submit', class: 'orderNowButton') do %>
+            Order Now
+          <% end %>
+          <div id="order-submit-spinner" style="display:none"><h4>Please Wait <%= image_tag 'ajax-loader.gif' %></h4></div>
+        </div>
+      </div>
+    <% end %>
+  </div>

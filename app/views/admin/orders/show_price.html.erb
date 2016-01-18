@@ -1,0 +1,11 @@
+<h3> Current hairillusion price is: <%=number_with_precision(ProductPrice.first.try(:price), precision: 2) %>$</h3>
+
+Updated product price to: &nbsp;&nbsp;&nbsp;&nbsp; <%= text_field_tag :new_price, ProductPrice.first.try(:price)%>
+
+<br>
+<br>
+Updated recurrent price to: &nbsp; <%= text_field_tag :recurrent_new_price, ProductPrice.first.try(:recurrent_price)%>
+
+<br>
+<br>
+<%= link_to "Update Price" , "#", :onclick=>"onUpdatePrice(event)", :class=>"btn btn-primary"%>

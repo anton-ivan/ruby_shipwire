@@ -1,0 +1,22 @@
+<div class="col-md-offset-2 col-md-4 checkoutForm">
+  <h2>Distributor Login</h2>
+  <%= form_tag(login_distributors_path, html: { id: 'login_distributor', :class => 'form-horizontal' }) do -%>
+    <%= control_group(nil, :email, label: 'Email') do %>
+      <%= email_field_tag :email, nil, class: 'form-control required' %>
+    <% end %>
+
+    <%= control_group(nil, :password, label: 'Password') do %>
+      <%= password_field_tag :password, nil, class: 'form-control required' %>
+    <% end %>
+
+    <div class="form-group">
+      <div style="text-align:center;" class="col-md-12">
+        <%= button_tag(type: 'submit', class: 'orderNowButton') do %>
+          Login
+        <% end %>
+        <div id="login-submit-spinner" style="display:none"><h4>Please Wait <%= image_tag 'ajax-loader.gif' %></h4></div>
+      </div>
+    </div>
+  <% end -%>
+  <br/><br/><br/><br/>
+</div>

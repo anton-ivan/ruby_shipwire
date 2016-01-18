@@ -1,0 +1,59 @@
+<%if session[:product_cart] %>
+
+	<% if session[:product_cart][:type] == "recurrent" %>
+		<tr style="border-top: 1px solid #ccc;">
+			<td colspan="3">Sub Total:</td>
+	                <td>
+	                    <label class="subtotal">$29.95</label></td>
+	            </tr>
+	            
+	            <tr>
+	                <td colspan="3">Process &amp; Handling</td>
+	                <td>
+	                    <label class="phtotal">$0.00</label></td>
+	            </tr> 
+	            
+	            <tr>
+	                <td colspan="3"><b>Estimated Order Total</b></td>
+	                <td>
+	                    <label class="ordertotal">$29.95</label></td>
+	            </tr>
+	<%else%>
+		 <tr style="border-top: 1px solid #ccc;">
+			<td colspan="3">Sub Total:</td>
+	                <td>
+	                    <label class="subtotal">$<%= number_with_precision(get_sub_total_from_session.to_f,precision:2) %></label></td>
+	            </tr>
+	            
+	            <tr>
+	                <td colspan="3">Process &amp; Handling</td>
+	                <td>
+	                    <label class="phtotal">$<%=number_with_precision(get_ph_session.to_f,precision:2)%></label></td>
+	            </tr> 
+	            
+	            <tr>
+	                <td colspan="3"><b>Estimated Order Total</b></td>
+	                <td>
+	                    <label class="ordertotal">$<%=number_with_precision(get_total_price_from_session.to_f,precision:2)%></label></td>
+	            </tr> 
+	<%end%>
+
+<%else%>
+<tr style="border-top: 1px solid #ccc;">
+                <td colspan="3">Sub Total:</td>
+                <td>
+                    <label class="subtotal">$0.00</label></td>
+            </tr>
+            
+            <tr>
+                <td colspan="3">Process &amp; Handling</td>
+                <td>
+                    <label class="phtotal">$0.00</label></td>
+            </tr> 
+            
+            <tr>
+                <td colspan="3"><b>Estimated Order Total</b></td>
+                <td>
+                    <label class="ordertotal">$0.00</label></td>
+            </tr>
+<%end%>

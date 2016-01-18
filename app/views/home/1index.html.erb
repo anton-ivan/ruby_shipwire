@@ -1,0 +1,104 @@
+<%= content_for :jumbotron do %>
+<div class="jumbotron">
+	<div class="container">
+		<%= render partial: 'orders/form', :locals => {:page => "top"} %>
+	</div>
+</div>
+<div class="jumbotron">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="text-center">Nothing looks more natural, period.</h2>
+				<br />
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-offset-1 col-md-6">
+				<div class="youtube-video">
+					<iframe width="560" height="315" src="//www.youtube.com/embed/6zxiQxOWPpo?rel=0" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<h3>Balding is Depressing</h3>
+				<p style="font-size:16px;">
+					There's no two ways about it.  Hair Illusion can't stop you from balding,
+					but it can conceal thin or bald hair naturally.
+				</p>
+			</div>
+			<div class="col-md-3">
+				<%= image_tag 'bottle.jpg', class: 'img-responsive' %>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="text-center">We use 1 ingredient 100% natural human hair.</h2>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="jumbotron">
+	<div class="container">
+		<h2 class="text-center">Hair Illusion – How Does It Work?</h2>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="row">
+					<div class="col-md-6">
+						<%= image_tag('ronnie_before.jpg', class: "img-responsive") %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6" style="margin-top: 5px;">
+						<%= image_tag('ronnie_after.jpg', class: "img-responsive") %>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="youtube-video">
+					<iframe width="560" height="315" src="//www.youtube.com/embed/a3nRqb_WCIA?rel=0" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="row">
+					<div class="col-md-offset-6 col-md-6">
+						<%= image_tag('mike_before.jpg', class: "img-responsive") %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-offset-6 col-md-6" style="margin-top: 5px;">
+						<%= image_tag('mike_after.jpg', class: "img-responsive") %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="jumbotron">
+	<div class="container">
+		<%= render partial: 'orders/photos' %>
+	</div>
+</div>
+ 
+<div class="jumbotron">
+	<div class="container">
+
+		<%= render partial: 'instagram' %>
+	</div>
+</div>
+ 
+<div class="jumbotron">
+	<div class="container">
+		<%= render partial: 'orders/testimonials' %>
+	</div>
+</div>
+
+<div class="jumbotron">
+	<div class="container">
+		<%= render partial: 'orders/form', :locals => {:page => "bottom"} %>
+	</div>
+</div>
+
+<% end %>

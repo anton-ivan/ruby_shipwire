@@ -1,0 +1,36 @@
+<% unless session[:product_cart].nil? %> 
+	<% if session[:product_cart][:type] == "recurrent" %> 
+		<tr>
+			<td>
+				<%= session[:product_cart][:name] %> 
+			</td>
+			<td>
+				1
+			</td>
+			<td>
+				<%= session[:product_cart][:price] %> 
+			</td>
+			<td>
+				0.00
+			</td>
+		</tr>
+	<%else%>
+		<% session[:product_cart][:products].each do |p| %>
+			<tr>
+				<td>
+					<%= p[:name] %> 
+				</td>
+				<td>
+					<%= p[:quantity] %> 
+				</td>
+				<td style="text-align: right"> 
+					<%= number_with_precision((p[:price].to_f * p[:quantity].to_f), precision: 2) %>
+				</td>
+				<td style="text-align: right"> 
+					<%= number_with_precision((p[:tax].to_f * p[:quantity].to_f), precision: 2) %>
+				</td>
+			</tr>
+		<%end%>
+	<%end%>
+	
+<%end%>

@@ -1,0 +1,30 @@
+<div class="outWrap outWhite">
+	<div class="Wrap" id="flowWrap">
+		<div id="upsellSection">
+			<div id="orderCompleteTxt"></div>
+			<div id="upsellImage"> 
+				<%= image_tag 'OPT.jpg', class: 'img-responsive' %>
+			</div>
+			<div id="upsellTxt">
+				<h2 class="upsellTitle"> HAIR ILLUSION HAIRLINE OPTIMIZER</h2>
+				Hairline Optimizer was created specifically to achieve a natural looking hairline when used with HAIR ILLUSION 100 % natural Hair Fibers. It will help eliminate excess product for a clean natural finish &amp; prevent fibers from falling onto the forehead.  As a valued customer you’re eligible for the special online price of just $6.95 + $3.95 S&amp;H.   Your Hairline Optimizer is designed to be reused and stores easily for travel.   Get your’s today at this special price.
+				<div class="clearer"></div>
+				<div class="Quantity">
+					<input id="ActionType0" name="ActionType0" type="hidden" value="0">
+					<input id="ActionCode0" name="ActionCode0" type="hidden" value="OPT">
+				</div><!-- END class='Quantity' --><div class="clearer"></div>
+				<h3 class="cta">Yes, I want to add the Hairline Optimizer to my order today!</h3>
+
+				<div class="clearer subclear"></div>
+				<%= link_to(image_tag('yes_button.gif'), "#", :onclick=>"onBuyUpsell('Optimizer',3)") %> 
+				<input alt="No, Thanks." id="rejectOffer" name="rejectOffer" value="NO"  onclick="onCancelUpsell('optimizer')" style="display: inline-block;max-width: 155px">
+
+			</div>
+			<!-- END id="upsellTxt" -->
+			<div class="clearer"></div>
+
+		</div><!-- END id="upsellSection" -->
+		<div class="clearer subclear"></div>
+	</div>
+	<div class="clearer"></div>
+</div>
