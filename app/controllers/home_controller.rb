@@ -16,7 +16,7 @@ class HomeController < ApplicationController
     @credit_card = CreditCard.new
     @distributor = Distributor.new     
     session[:product_cart] = nil  
-     
+    test_shipwire
   end 
   
   def clear_all
@@ -77,7 +77,14 @@ class HomeController < ApplicationController
       @forums = Forum.where(:domain_name=>"hairillusion.net",:approved=>true, :country=>params[:search][:country], :state=>params[:order][:state])#.paginate(per_page: 2, page: params[:page])
     end
   end
-  
+  def test_shipwire
+    # create an order
+    order = Shipwire::Order.new
+# add an address
+    order.address = {address1: 'Test Address', city: 'Chicago', country: 'US'}
+# add an item
+    o.add_item Shipwire::OrderItem.new('SKU0001', 1)
+  end
   def new_forum
     @forum = Forum.new
   end
