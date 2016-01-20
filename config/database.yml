@@ -7,6 +7,6 @@ development:
   database: hairillusion_development
   pool: 5
   username: root
-  password: hairillusion
+  password: password
   host: 127.0.0.1
 

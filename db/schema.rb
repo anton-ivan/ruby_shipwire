@@ -169,16 +169,6 @@ ActiveRecord::Schema.define(version: 20160105130452) do
     t.string   "description",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "weight"
-  end
-
-  create_table "reccurent_orders", force: true do |t|
-    t.integer  "customer_id"
-    t.integer  "order_id"
-    t.datetime "start_date"
-    t.datetime "next_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "recurrent_products", force: true do |t|
