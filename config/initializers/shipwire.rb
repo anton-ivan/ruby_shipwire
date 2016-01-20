@@ -20,6 +20,7 @@ Shipwire.configure do |config|
   # config.timeout = 5
 
   # Endpoint base URL to use for requests. Default is 'https://api.shipwire.com'
+  config.endpoint = "<%= ENV['SHIPWIRE_ENDPOINT'] %>"
   # config.endpoint = 'https://api.shipwire.com'
 
   # Enable logging to the console. Default is false
