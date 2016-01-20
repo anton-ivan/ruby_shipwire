@@ -88,6 +88,18 @@ class Order < ActiveRecord::Base
     'priority'
   end
 
+  def do_fulfillment
+
+    logger.info ".........................."
+    order = Shipwire::Orders.new
+    #add shipwire post data
+    params = { "expand"=>{
+        "externalId" => '333'
+      }
+    }
+    logger.info ".........................."
+    order.create params
+  end
   def mail_piece
     if total_quantity <= 30
       'flat rate priority box'
