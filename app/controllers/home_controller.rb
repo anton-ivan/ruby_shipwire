@@ -1,4 +1,4 @@
-class HomeController < ApplicationController 
+class HomeController < ApplicationController
   protect_from_forgery :except => [:thankyou]
    
   def index      

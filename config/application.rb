@@ -25,10 +25,5 @@ module Hairillusion
     config.assets.initialize_on_precompile = false
     config.assets.precompile += %w(*.svg *.eot *.ttf *.woff admin.js admin.css theme.css js_composer.css main_media.css wt_front.css)
 
-    #shipwire configuration, need to be separated
-    Shipwire.config do |config|
-      config.username    = "an.ivan0209@gmail.com"
-      config.password    = "password@123"
-    end
   end
 end
