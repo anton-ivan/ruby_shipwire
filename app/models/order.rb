@@ -91,14 +91,17 @@ class Order < ActiveRecord::Base
   def do_fulfillment
 
     logger.info ".........................."
-    order = Shipwire::Orders.new
+    #order = Shipwire::Orders.new
+    orders = Shipwire::Orders.new
+    test = orders.list
+    p test
     #add shipwire post data
     params = { "expand"=>{
         "externalId" => '333'
       }
     }
+    p orders
     logger.info ".........................."
-    order.create params
   end
   def mail_piece
     if total_quantity <= 30

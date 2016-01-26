@@ -13,11 +13,6 @@ class HomeController < ApplicationController
     @credit_card = CreditCard.new
     @distributor = Distributor.new     
     session[:product_cart] = nil
-    test_shipwire
-  end
-  def test_shipwire
-    @order = Order.find(4822)
-    @order.do_fulfillment
   end
   def clear_all
     session[:product_cart] = nil
