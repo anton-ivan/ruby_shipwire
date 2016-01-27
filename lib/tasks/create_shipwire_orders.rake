@@ -125,6 +125,12 @@ namespace :hair do
       }
       #on successful, add entries...
       p shipwire_order
+
+      logger.info ".........................."
+      #order = Shipwire::Orders.new
+      new_order = Shipwire::Orders.new
+      new_order.create(new_order)
+      logger.info ".........................."
     end
 
 
