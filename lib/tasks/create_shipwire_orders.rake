@@ -1,6 +1,13 @@
+require 'rest-client'
 namespace :hair do
   
   task :create_shipwire_orders => :environment do
+
+    Shipwire.configure do |config|
+      config.username = "ronnie@hairillusion.com"
+      config.password = "Zack1369!"
+      config.endpoint = URI::encode('https://api.shipwire.com')
+    end
     normal_orders = Order.where("order_type != 'recurrent' and refunded_at is null and shipment_id is null")
     #get unshipped orders first
     orders = Order.joins("LEFT JOIN order_deliveries ON orders.id = order_deliveries.order_id JOIN customers ON orders.orderer_id = customers.id")
@@ -125,12 +132,27 @@ namespace :hair do
       }
       #on successful, add entries...
       p shipwire_order
+      p '--------------___JSON_-----------------------'
+      p shipewire_order.to_json
 
-      logger.info ".........................."
+      p  ".........................."
       #order = Shipwire::Orders.new
       new_order = Shipwire::Orders.new
-      new_order.create(new_order)
-      logger.info ".........................."
+      #response = new_order.create(shipwire_order)
+     response = new_order.list({username:'ronnie@hairillusion.com', password:'Zack1369!'})
+      p response
+=begin
+      response = RestClient::Request.execute(
+          method: :get,
+          url: 'https://api.beta.shipwire.com/api/v3/orders',
+          user: 'an.ivan0209@gmail.com',
+          password: 'password@123'
+      )
+=end
+
+      response = new_order.create(shipwire_order)
+      p response
+      p ".........................."
     end
 
 
