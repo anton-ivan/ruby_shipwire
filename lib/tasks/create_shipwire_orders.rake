@@ -29,8 +29,6 @@ namespace :hair do
 
       #now create shipwire order
       sku = "Test Product 001"
-      quantity = 1
-      price = 0.33
 
       #items generation
       order_items = []
@@ -138,18 +136,8 @@ namespace :hair do
       p  ".........................."
       #order = Shipwire::Orders.new
       new_order = Shipwire::Orders.new
-      #response = new_order.create(shipwire_order)
-     response = new_order.list({username:'ronnie@hairillusion.com', password:'Zack1369!'})
+      response = new_order.list({username:'ronnie@hairillusion.com', password:'Zack1369!'})
       p response
-=begin
-      response = RestClient::Request.execute(
-          method: :get,
-          url: 'https://api.beta.shipwire.com/api/v3/orders',
-          user: 'an.ivan0209@gmail.com',
-          password: 'password@123'
-      )
-=end
-
       response = new_order.create(shipwire_order)
       p response
       p ".........................."
