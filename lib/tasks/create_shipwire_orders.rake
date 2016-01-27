@@ -28,7 +28,7 @@ namespace :hair do
       #for each order make POST request
 
       #now create shipwire order
-      sku = "Test Product 001"
+      sku = "654391270988"
 
       #items generation
       order_items = []
@@ -37,9 +37,9 @@ namespace :hair do
       end
 
       shipwire_order = {
-          :orderNo      => "foobar1",
-          :externalId   => "rFooBar1",
-          :processAfterDate => Time.now.to_i,
+          :orderNo      => "##{order_id}TEST",
+          :externalId   => order_id,
+          :processAfterDate => nil,
           # List of items ordered
           :items => order_items,
 =begin
@@ -60,22 +60,22 @@ namespace :hair do
               # Specify one of warehouseId, warehouseExternalId, warehouseRegion, warehouseArea
               :warehouseId          => nil,
               :warehouseExternalId  => nil,
-              :warehouseRegion      => 'LAX',
+              :warehouseRegion      => nil,
               :warehouseArea        => nil,
               # Service requested for this order
-              :serviceLevelCode     => '1D',
+              :serviceLevelCode     => 'GD',
               # Delivery carrier requested for this order
               :carrierCode          => nil,
-              # Was "Same Day" processing requested?
+              # Was "Same Day" processing requested ?
               :sameDay  => 'NOT REQUESTED',
               # Used to assign a pre-defined set of shipping and/or customization preferences on an order.
               # A channel must be defined prior to order creation for the desired preferences to be applied.
               # Please contact us if you believe your application requires a channel.
-              :channelName => 'My Channel',
+              :channelName => nil,
               :forceDuplicate => 0,
               :forceAddress   => 00,
-              :carrierAccountNumber => 'qwer1234',
-              :referrer             =>  'Foo Referrer',
+              :carrierAccountNumber => nil,
+              :referrer             =>  'Hair Illusion Ruby App',
               :affiliate      => nil,
               :currency => 'USD',
               # Specifies whether the items to be shipped can be split into two packages if needed
@@ -131,13 +131,13 @@ namespace :hair do
       #on successful, add entries...
       p shipwire_order
       p '--------------___JSON_-----------------------'
-      p shipewire_order.to_json
+      p shipwire_order.to_json
 
       p  ".........................."
       #order = Shipwire::Orders.new
       new_order = Shipwire::Orders.new
-      response = new_order.list({username:'ronnie@hairillusion.com', password:'Zack1369!'})
-      p response
+      #response = new_order.list({username:'ronnie@hairillusion.com', password:'Zack1369!'})
+      #p response
       response = new_order.create(shipwire_order)
       p response
       p ".........................."
