@@ -1,5 +1,5 @@
 class AddRecurrentPriceToProductPrices < ActiveRecord::Migration
   def change
-    add_column :product_prices, :recurrent_price, :float
+    add_column :products, :sku, :float
   end
 end
