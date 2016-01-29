@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160105130452) do
+ActiveRecord::Schema.define(version: 20160128170719) do
 
   create_table "customer_cards", force: true do |t|
     t.integer  "customer_id"
@@ -169,6 +169,8 @@ ActiveRecord::Schema.define(version: 20160105130452) do
     t.string   "description",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "weight"
+    t.string   "sku"
   end
 
   create_table "recurrent_products", force: true do |t|
