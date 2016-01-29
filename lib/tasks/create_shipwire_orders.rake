@@ -18,7 +18,9 @@ namespace :hair do
       order_id = order.id
 
       #get  items
-      items = OrderItem.where(order_id: order_id)
+      items = OrderItem.joins(:product)
+                  .where(order_id: order_id)
+                  .select('products.sku as sku, orderitems.*')
       #get production information
 
       #get customer information
@@ -28,12 +30,11 @@ namespace :hair do
       #for each order make POST request
 
       #now create shipwire order
-      sku = "654391270988"
 
       #items generation
       order_items = []
       items.each do |item|
-        order_items << { :sku => sku, :quantity => item.quantity, :commercialInvoiceValue => item.price, :commercialInvoiceValueCurrency => 'USD'}
+        order_items << { :sku => item.sku, :quantity => item.quantity, :commercialInvoiceValue => item.price, :commercialInvoiceValueCurrency => 'USD'}
       end
 
       shipwire_order = {
