@@ -37,7 +37,8 @@ group :development do
   gem 'pry'
   gem 'pry-debugger'
 end 
-gem 'shipwire',:git=>'git@github.com:dfreerksen/shipwire.git', :branch=>'new-api',:ref=>'cf358b5855e733dedb0c9c57fc3134d8387f35b7'
+
+gem 'shipwire', git: 'https://github.com/dfreerksen/shipwire.git', :branch=>'new-api'#,:ref=>'cf358b5855e733dedb0c9c57fc3134d8387f35b7'
 group :production do
   gem 'newrelic_rpm'
 end
