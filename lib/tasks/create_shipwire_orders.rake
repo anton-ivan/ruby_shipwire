@@ -1,4 +1,5 @@
 require 'rest-client'
+require 'json'
 namespace :hair do
   
   task :create_shipwire_orders => :environment do
@@ -138,11 +139,9 @@ namespace :hair do
       new_order = Shipwire::Orders.new
       response = new_order.create(shipwire_order)
       p response
-      #check if successful,
-      body = JSON.parse(response.body)
-      if(body.status == 200)
+      if(response.body['status'] == 200)
         #if successful, mark as 'shipped'
-        OrderDelivery.create(:order_id, order_id)
+        OrderDelivery.create(:order_id => order_id)
         #add shipped entry
       else
         p response.error_report
