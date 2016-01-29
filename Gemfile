@@ -35,7 +35,7 @@ group :development do
   gem 'capistrano-rvm', github: 'capistrano/rvm'
   gem 'capistrano-sidekiq'
   gem 'pry'
-  gem 'pry-debugger'
+ # gem 'pry-debugger'
 end 
 
 gem 'shipwire', git: 'https://github.com/dfreerksen/shipwire.git', :branch=>'new-api'#,:ref=>'cf358b5855e733dedb0c9c57fc3134d8387f35b7'
