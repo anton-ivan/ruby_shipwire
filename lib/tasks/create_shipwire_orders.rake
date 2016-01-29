@@ -20,7 +20,7 @@ namespace :hair do
       #get  items
       items = OrderItem.joins(:product)
                   .where(order_id: order_id)
-                  .select('products.sku as sku, orderitems.*')
+                  .select('products.sku as sku, order_items.*')
       #get production information
 
       #get customer information
@@ -39,7 +39,7 @@ namespace :hair do
 
       shipwire_order = {
           :orderNo      => "##{order_id}TEST",
-          :externalId   => order_id,
+          :externalId   => "#{order_id}EXTERNAL",
           :processAfterDate => nil,
           # List of items ordered
           :items => order_items,
@@ -135,12 +135,19 @@ namespace :hair do
       p shipwire_order.to_json
 
       p  ".........................."
-      #order = Shipwire::Orders.new
       new_order = Shipwire::Orders.new
-      #response = new_order.list({username:'ronnie@hairillusion.com', password:'Zack1369!'})
-      #p response
       response = new_order.create(shipwire_order)
       p response
+      #check if successful,
+      body = JSON.parse(response.body)
+      if(body.status == 200)
+        #if successful, mark as 'shipped'
+        OrderDelivery.create(:order_id, order_id)
+        #add shipped entry
+      else
+        p response.error_report
+      end
+
       p ".........................."
     end
 
