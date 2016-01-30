@@ -11,7 +11,7 @@
       <div class="mainshdw">
         <div id="video">
         	<div class="youtube-video">
-					<iframe width="560" height="315" src="//www.youtube.com/embed/ZAT7TjpCsBU?rel=0" frameborder="0" allowfullscreen></iframe>
+					<iframe width="560" height="315" src="//www.youtube.com/embed/ZAT7TjpCsBU?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
 				</div>
          </div>
       </div> 
@@ -31,14 +31,14 @@
     <h3>Choose from 8 true colors to seemlessly<br>
     blend with or replace your hair:</h3>
     <ul id="colorsli">
-      <li id="color-jblack"><span class="assets">Jet Black</span> <a href="http://hairillusion.dtmstage.com/#order" class="ordnwbtn" title="Order Hair Illusion™ Now" style="cursor: pointer;">Order Now</a></li>
-      <li id="color-black"><span class="assets">Black</span> <a href="http://hairillusion.dtmstage.com/#order" class="ordnwbtn" title="Order Hair Illusion™ Now">Order Now</a></li>
-      <li class="colorlst" id="color-dbrown"><span class="assets">Dark Brown</span> <a href="http://hairillusion.dtmstage.com/#order" class="ordnwbtn" title="Order Hair Illusion™ Now">Order Now</a></li>
-      <li id="color-brown"><span class="assets">Browm</span> <a href="http://hairillusion.dtmstage.com/#order" class="ordnwbtn" title="Order Hair Illusion™ Now">Order Now</a></li>
-      <li id="color-lbrown"><span class="assets">Light Brown</span> <a href="http://hairillusion.dtmstage.com/#order" class="ordnwbtn" title="Order Hair Illusion™ Now">Order Now</a></li>
-      <li class="colorlst" id="color-aub"><span class="assets">Auburn</span> <a href="http://hairillusion.dtmstage.com/#order" class="ordnwbtn" title="Order Hair Illusion™ Now">Order Now</a></li>
-      <li id="color-blonde"><span class="assets">Light Blonde</span> <a href="http://hairillusion.dtmstage.com/#order" class="ordnwbtn" title="Order Hair Illusion™ Now">Order Now</a></li>
-      <li id="color-lblonde"><span class="assets">Light Blonde</span> <a href="http://hairillusion.dtmstage.com/#order" class="ordnwbtn" title="Order Hair Illusion™ Now">Order Now</a></li>
+      <li id="color-jblack"><span class="assets" >Jet Black</span> <a href="#order" class="ordnwbtn" title="Order Hair Illusion™ Now" style="cursor: pointer;">Order Now</a></li>
+      <li id="color-black"><span class="assets">Black</span> <a href="#order" class="ordnwbtn" title="Order Hair Illusion™ Now">Order Now</a></li>
+      <li class="colorlst" id="color-dbrown"><span class="assets">Dark Brown</span> <a href="#order" class="ordnwbtn" title="Order Hair Illusion™ Now">Order Now</a></li>
+      <li id="color-brown"><span class="assets">Browm</span> <a href="#order" class="ordnwbtn" title="Order Hair Illusion™ Now">Order Now</a></li>
+      <li id="color-lbrown"><span class="assets">Light Brown</span> <a href="#order" class="ordnwbtn" title="Order Hair Illusion™ Now">Order Now</a></li>
+      <li class="colorlst" id="color-aub"><span class="assets">Auburn</span> <a href="#order" class="ordnwbtn" title="Order Hair Illusion™ Now">Order Now</a></li>
+      <li id="color-blonde"><span class="assets">Light Blonde</span> <a href="#order" class="ordnwbtn" title="Order Hair Illusion™ Now">Order Now</a></li>
+      <li id="color-lblonde"><span class="assets">Light Blonde</span> <a href="#order" class="ordnwbtn" title="Order Hair Illusion™ Now">Order Now</a></li>
     </ul>
     <div class="clearer"></div>
   </div>
@@ -455,7 +455,7 @@
         </p>
         <div style="text-align: center;" class="FormSubmit">
             <span id="submitBtn">
-            	<%= image_tag 'submit_button_off.gif', :onclick=>'onClickOrder()'%> 
+            	<%= image_tag 'submit_button_off.gif', :onclick=>'onClickOrder()', :id=>'submit_button'%> 
             </span>
             <p id="click">By clicking Process Order, your credit card will be charged the amount above. Click only once.</p>
         </div>

@@ -74,7 +74,7 @@ function onChangeQty()
 }
 
 function onClickOrder()
-{
+{ 
 	error = ""
 	if (!$("#CardNumber").val())
 	{
@@ -114,15 +114,16 @@ function onClickOrder()
 	}
 	if (!$("#zip").val())
 	{
-		error = error + "Please enter Zip Code.\n" 
+		error = error + "Please enter Zip Code.\n";
 	}
 	if (!$("#phone").val())
 	{
-		error = error + "Please enter Phone.\n" 
+		error = error + "Please enter Phone.\n" ;
 	}
  
 	if(error == "")
 	{
+		document.getElementById("submit_button").src = "assets/Processing.gif"; 
 		$("#AcceptOfferButton").hide();
 			$.ajax({
           type: "post",

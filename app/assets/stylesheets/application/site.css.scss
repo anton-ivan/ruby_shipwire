@@ -142,7 +142,7 @@ table {border-collapse: collapse; border-spacing: 0;}
 .fldCt .requiredIcon {display:none;}
 .fldCt.required .requiredIcon {display:inline; color:#f00;}
 
-.fldCt .fld select {width:182px;}
+.fldCt .fld select {width:176px;}
 .fldCt .fld input {width:176px;}
 	#CardExpirationCt .label {margin-top: 5px;}
 	.fldCt .fld input#ShippingIsDifferentThanBilling {width: auto;}
@@ -326,6 +326,7 @@ input[type=submit].confirm_input_btn:hover {
 
 .assets {background: url('/assets/assets.png') no-repeat; height: 38px; padding: 0; display: block; text-indent: -9999px;}
 
+.jblack-assets {background: url('/assets/before-after1.jpg') no-repeat; height: 38px; padding: 0; display: block; text-indent: -9999px;}
 /* List Properties
 .mainli, #features ul, #subtxt ul {list-style: none; padding: 0; margin: 0;}
 	.mainli li, #features ul li, #subtxt ul li {background: url(/images/desktop/blt-red.png) 0 0 no-repeat; padding: 0 0 8px 18px; margin: 0;} */
@@ -395,22 +396,22 @@ input[type=submit].confirm_input_btn:hover {
 		#colorsli li span.assets {background-image: url('/assets/colors.png'); width: 245px; height: 145px; cursor: crosshair;}
 		#colorsli li.colorlst {margin-right: 0;}
 		#colorsli li#color-jblack span {background-position: 0 0;}
-		#colorsli li#color-jblack span:hover {background-position: -245px 0;}
+		#colorsli li#color-jblack span:hover {background-image: url('/assets/jb.jpg')}
 		#colorsli li#color-black span {background-position: 0 -145px;}
-		#colorsli li#color-black span:hover {background-position: -245px -145px;}
+		#colorsli li#color-black span:hover {background-position: 0 0;background-image: url('/assets/jb.jpg')}
 		#colorsli li#color-dbrown span {background-position: 0 -290px;}
-		#colorsli li#color-dbrown span:hover {background-position: -245px -290px;}
+		#colorsli li#color-dbrown span:hover {background-position: 0 0;background-image: url('/assets/black.jpg')}
 		#colorsli li#color-brown span {background-position: 0 -435px;}
-		#colorsli li#color-brown span:hover {background-position: -245px -435px;}
+		#colorsli li#color-brown span:hover {background-position: 0 0;background-image: url('/assets/jb.jpg')}
 		#colorsli li#color-lbrown span {background-position: 0 -580px;}
-		#colorsli li#color-lbrown span:hover {background-position: -245px -580px;}
+		#colorsli li#color-lbrown span:hover {background-position: 0 0;background-image: url('/assets/jb.jpg')}
 		#colorsli li#color-aub span {background-position: 0 -725px;}
-		#colorsli li#color-aub span:hover {background-position: -245px -725px;}
+		#colorsli li#color-aub span:hover {background-position: 0 0;background-image: url('/assets/jb.jpg')}
 	#colorsli li#color-blonde {margin-left: 140px;}
 		#colorsli li#color-blonde span {background-position: 0 -870px;}
-		#colorsli li#color-blonde span:hover {background-position: -245px -870px;}
+		#colorsli li#color-blonde span:hover {background-position: 0 0;background-image: url('/assets/jb.jpg')}
 		#colorsli li#color-lblonde span {background-position: 0 -1015px;}
-		#colorsli li#color-lblonde span:hover {background-position: -245px -1015px;}
+		#colorsli li#color-lblonde span:hover {background-position: 0 0;background-image: url('/assets/jb.jpg')}
 
 #ceo {width: 645px; float: right;}
 	#ceo h3 {font: normal 34px/32px 'Gotham Black', Arial, Helvetica, sans-serif;}
