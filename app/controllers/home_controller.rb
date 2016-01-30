@@ -262,6 +262,7 @@ class HomeController < ApplicationController
   
   def create_portal_order
     @order = Order.new
+    redirect_to '/portal'
   end
  
  private  
