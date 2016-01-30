@@ -1,0 +1,23 @@
+<%= form_for :order, url: {:controller=>"home", :action=>"create_portal_order"}, html: { class: 'form-horizontal' } do |f| %> 
+	<%= control_group(@order, :name, label: 'Your Name:', class:'col-md-2 control-label') do %>
+    	<%= f.select :orderer, options_for_select( Agent.all.map{ |a| [a.name, a.id]} ),{}, { class: 'form-control required' } %>
+	<% end %> 
+
+  	<br />   
+    <%= f.submit 'Submit', class: 'btn btn-sm btn-success' %>
+    <%= link_to 'Cancel', forum_path, class: 'btn btn-sm btn-danger' %>
+    
+  <% end %>  
+
+<script type="text/javascript">
+	$( document ).ready(function() { 
+	$("#cb_country" ).change(function() { 
+		country = $("#cb_country").val();
+			$.ajax({
+		    	type: "GET",
+		        url: "/get_states?parent_region="+ country,
+		        dataType: "script",
+		    });
+		}); 
+	});
+</script>

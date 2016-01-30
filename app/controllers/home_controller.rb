@@ -254,6 +254,15 @@ class HomeController < ApplicationController
       end   
     end     
   end
+  
+  def portal
+    @forum = Forum.new
+    
+  end
+  
+  def create_portal_order
+    @order = Order.new
+  end
  
  private  
   def admin_forum_params

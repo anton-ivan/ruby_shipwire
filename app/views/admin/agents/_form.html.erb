@@ -1,0 +1,42 @@
+<style>
+	.add_table td {
+		padding: 3px
+	}
+</style>
+
+<%= form_for @agent, url: @agent.new_record? ? admin_agents_path : admin_agent_path(@agent), html: { class: 'form-horizontal' } do |f| %>
+
+<% if @agent.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(@agent.errors.count, "error") %> prohibited this admin_domain_distributor from being saved:</h2>
+
+	<ul>
+		<% @agent.errors.full_messages.each do |msg| %>
+		<li>
+			<%= msg %>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+<table class="add_table">
+	<tr>
+		<td><b>Name:</b></td>
+		<td> <%= f.text_field :name, :required=>true %> </td>
+	</tr>
+	<tr>
+		<td><b>Company:</b></td>
+		<td> <%= f.email_field :email, :required=>true %> </td> 
+	</tr> 
+</table>
+
+<br />
+<div class="actions">
+	<%= f.submit "Save", :class=>"btn btn-primary" %>
+	<%= link_to 'Back', admin_agents_path, :class=>"btn btn-default" %>
+</div>
+<br />
+<br />
+<br />
+<% end %>

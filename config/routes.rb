@@ -3,11 +3,15 @@ require 'sidetiq/web'
 
 Hairillusion::Application.routes.draw do 
 
+  get "agents/index"
   root 'home#index'
 
   mount Sidekiq::Web => '/sidekiq'
   
   get '/distributors/subregion_options' => 'distributors#subregion_options'
+
+  get '/portal' => 'home#portal' 
+  post 'home/create_portal_order'
   
   get '/faq' => 'home#faq'
   get '/thankyou' => 'home#thankyou'
@@ -69,6 +73,9 @@ Hairillusion::Application.routes.draw do
   resources :health_check, only: [:index]
 
   namespace :admin do
+    
+    resources :agents 
+    
     get "/" => "orders#index"
     
     resources :customers, only: [:index, :show, :edit, :update] do
