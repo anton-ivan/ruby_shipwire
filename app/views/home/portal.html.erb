@@ -1,6 +1,7 @@
+<br />
 <%= form_for :order, url: {:controller=>"home", :action=>"create_portal_order"}, html: { class: 'form-horizontal' } do |f| %> 
-	<%= control_group(@order, :name, label: 'Your Name:', class:'col-md-2 control-label') do %>
-    	<%= f.select :orderer, options_for_select( Agent.all.map{ |a| [a.name, a.id]} ),{}, { class: 'form-control required' } %>
+	<%= control_group(@order, :name, label: 'Agent:', class:'col-md-2 control-label') do %>
+    	<%= f.select :orderer, options_for_select( Agent.all.map{ |a| [a.name, a.id]} ),{:include_blank=>true}, { class: 'form-control required' } %>
 	<% end %> 
 
   	<br />   
