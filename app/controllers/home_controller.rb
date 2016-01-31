@@ -155,7 +155,7 @@ class HomeController < ApplicationController
       session[:product_cart] = Hash.new
       session[:product_cart][:type] = params[:type] 
       if params[:type].to_s == "recurrent"  
-        session[:product_cart][:name] = params[:val] + " - HAIR ILLUSION – FREE SHIPPING + BONUS HAIRLINE OPTIMIZER"
+        session[:product_cart][:name] = params[:val] #+ " - HAIR ILLUSION – FREE SHIPPING + BONUS HAIRLINE OPTIMIZER"
         session[:product_cart][:price] = 29.95
         session[:product_cart][:tax] = 0
         session[:product_cart][:total] = 29.95
@@ -256,8 +256,12 @@ class HomeController < ApplicationController
   end
   
   def portal
-    @forum = Forum.new
-    
+    session[:cart] = nil
+    @orderer = Customer.new
+    @order = @orderer.orders.build(order_items_attributes: [quantity: 1])
+    @credit_card = CreditCard.new
+    @distributor = Distributor.new     
+    session[:product_cart] = nil
   end
   
   def create_portal_order

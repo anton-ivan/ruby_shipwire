@@ -51,7 +51,7 @@ class Admin::OrdersController < Admin::ApplicationController
       @order = @distributor.orders.build
       @credit_card = CreditCard.new
 
-      Product.all.each do |p|
+      Product.where("product_type != 'recurrent'").each do |p|
         @order.order_items<< OrderItem.new(product: p, quantity: 0)
       end
     elsif params[:customer_id]
@@ -250,7 +250,7 @@ class Admin::OrdersController < Admin::ApplicationController
         
         order.update_attribute(:host,host) 
         o.line_items.each do |item| 
-          product = Product.where("lower(description) = ?", item.variant_title.downcase).first  
+          product = Product.where("product_type !='recurrent' and lower(description) = ?", item.variant_title.downcase).first  
           product_id = nil 
           product_id = product.id unless product.nil?   
           price = item.price.to_f*100 

@@ -7,12 +7,12 @@ class Product < ActiveRecord::Base
     dark_brown: 2094,
     brown: 2095,
     light_brown: 2096,
-    brown: 2097,
+    auburn: 2097,
     dark_blonde: 2098,
     blonde: 2099
   }
 
   validates :product_code, presence: true, inclusion: { in: PRODUCT_CODE.values, message: "%{value} is not a valid color" }
-  validates :price, presence: true, numericality: { greater_than: 0 }
+  validates :price, presence: true#, numericality: { greater_than: 0 }
   validates :description, presence: true
 end

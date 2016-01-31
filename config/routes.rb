@@ -20,6 +20,7 @@ Hairillusion::Application.routes.draw do
   get '/after_payment' => 'home#after_payment'
   post '/thankyou' => 'home#thankyou'
   post '/create_order' => 'orders#create_order'
+  post '/create_agent_order' => 'orders#create_agent_order'
   get '/buy_now' =>"home#buy_now"
   
   post '/get_forums' => 'home#get_forums' 

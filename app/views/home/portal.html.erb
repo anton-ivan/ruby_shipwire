@@ -1,25 +1,419 @@
-<br />
-<%= form_for :order, url: {:controller=>"home", :action=>"create_portal_order"}, html: { class: 'form-horizontal' } do |f| %> 
-	<%= control_group(@order, :name, label: 'Agent:', class:'col-md-2 control-label') do %>
-    	<%= f.select :orderer_id, options_for_select( Agent.all.map{ |a| [a.name, a.id]} ),{:include_blank=>true}, { class: 'form-control required' } %>
-	<% end %> 
+<div class="outWrap outWhite" id="formWrap">
+		<table class="table">
+		<tr>
+			<td class="wide_label_td" style="color: #000;padding-top: 15px;padding-left: 190px"> Agent Name</td>
+			<td>
+    			<%= select_tag :referrer, options_for_select( Agent.all.map{ |a| [a.name, a.name]} ), {:include_blank=>true, class: 'form-control required', :required=>true, style:" width:240px" } %>				
+			</td>
+		</tr>
+	</table>
+	<div class="Wrap">
+		<div id="form">
+			<form action="images/Hair Illusion _ Nothing Looks More Natural, Period..html" method="post">
+				<div>
+					<span style="color: #FF0000; font-weight: bold"> </span>
+				</div>
+				<div id="productSelection">
+					<div class="FormHeadlineL">
+						<strong>STEP 1:</strong>
+						<br>
+						Select your order
+					</div>
+					<div class="checkbox" id="checkbox0">
+						<input type="radio" id="Bonus" name="Offer" value="Bonus" onclick="onChangePlan('bonus')">
+						<label for="Bonus"> <b>HAIR ILLUSION HAIR CLUB.</b>
+							<br />
+							<br />
+							<b>YES, I would like to join the Hair Illusion Hair Club and receive a FREE 2 weeks supply. I understand I will become a Hair Illusion Hair Club member and receive a FREE 2 week supply of Hair Illusion and FREE Hairline optimizer as well as FREE shipping. I will be charged $8.95 for process and handling and will be able to cancel or adjust my plan anytime as described in the terms below.
+							<br />
+							<br />
+							We Will Ship You a Free 2 Weeks Supply Of The Color Of Your Choice With Free Shipping & Free Hairline Optimizer.
+							Only Pay $8.95 For Process/Handing. </b>
+							<br>
+							<br>
+							<div id="top_order_div" style="display: none">
+								<b>Benefits Of Joining Our Hair Club.</b>
+								<br />
+								<br />
+								Free Two Week Supply. 50% Off Retail Price. Never Run Out. Free Hairline Optimizer & Free Shipping With First Order.
+								30 Days After your Order And Every 30 Days After You Will Receive a Full Month Supply Of Hair Illusion. Only Pay $29.95 Plus $4.95 S/H. Charged to the card you provide today unless you cancel. No Commitment. You Can Cancel Any time Or Adjust Your Monthly Plan According To How Much Hair Illusion You Use.
+								<br />
+								<br />
 
-  	<br />   
-  	<div class="col-md-offset-3 col-sm-offset-2">
-    <%= f.submit 'Submit', class: 'btn btn-sm btn-success' %>
-    <%= link_to 'Cancel', '/', class: 'btn btn-sm btn-danger' %>
-    </div>
-  <% end %>  
+								<b>How It Works</b>
+								<br />
+								<br />
+								We Will Ship You a Free 2 Weeks Supply Of The Color Of Your Choice With Free Shipping & Free Hairline Optimizer. Only Pay $8.95 For Process/Handing.
+								Benefits Of Joining Our Hair Club.  Huge Savings! Never Run Out, Free Two Week Supply, Free Shipping & Free Hairline Optimizer With First Order.
+								30 Days After your Order And Every 30 Days After You Will Receive a Full Month Supply Of Hair Illusion. Only Pay $29.95 Plus $4.95 S/H. Charged to
+								the card you provide today unless you cancel. No Commitment.You Can Cancel Any time Or Adjust Your Monthly Plan According To How Much Hair Illusion You Use.
+							</div> </label>
+						<br />
+
+					</div>
+					<div class="checkbox" id="checkbox1">
+						<input type="radio" id="One" name="Offer" value="One" onclick="onChangePlan('one')">
+						<label for="One"><b>I would like to buy a one time purchase of Hair Illusion today for $<%= @price%> + $6.95 S&amp;H</b>
+							<br>
+							<br>
+							<div id="bottom_order_div" style="display: none">
+								I understand I will not get the BONUS Hairline Optimizer or the FREE S&amp;H with a one time shipment.
+						</label>
+					</div>
+				</div>
+
+				<div id="bonusRadio" style="display: none;width: 291px">
+					<div class="FormSubHeadlineL">
+						Choose your color
+					</div>
+
+					<input type="hidden" id="productType">
+					<input type="hidden" id="productQuantity">
+					<input type="hidden" id="orderType">
+
+					<div class="checkbox color" id="color-jetblack" style="margin-top: 0px;padding-left:0px">
+						<input type="radio" id="JetBlack" name="Color" value="JET" onclick="setProductType('Jet Black')">
+						<%= image_tag 'color-jet-black.png', :clas=>"colorimg"%>
+						Jet Black
+					</div>
+					<div class="checkbox color" id="color-black" style="margin-top: 0px;padding-left:0px" onclick="setProductType('Black')">
+						<input type="radio" id="Black" name="Color" value="BLK">
+						<%= image_tag 'color-black.png', :clas=>"colorimg"%>
+						Black
+					</div>
+					<div class="checkbox color" id="color-dkbrown" style="margin-top: 0px;padding-left:0px" onclick="setProductType('Dark Brown')">
+						<input type="radio" id="DarkBrown" name="Color" value="DKBR">
+						<%= image_tag 'color-dark-brown.png', :clas=>"colorimg"%>
+						Dark Brown
+					</div>
+					<div class="checkbox color" id="color-brown" style="margin-top: 0px;padding-left:0px" onclick="setProductType('Brown')">
+						<input type="radio" id="Brown" name="Color" value="BR">
+						<%= image_tag 'color-brown.png', :clas=>"colorimg"%>
+						Brown
+					</div>
+					<div class="checkbox color" id="color-lghtbrown" style="margin-top: 0px;padding-left:0px" onclick="setProductType('Light Brown')">
+						<input type="radio" id="LightBrown" name="Color" value="LTBR">
+						<%= image_tag 'color-light-brown.png', :clas=>"colorimg"%>
+						Light Brown
+					</div>
+					<div class="checkbox color" id="color-auburn" style="margin-top: 0px;padding-left:0px" onclick="setProductType('Auburn')">
+						<input type="radio" id="Auburn" name="Color" value="AUB">
+						<%= image_tag 'color-auburn.png', :clas=>"colorimg"%>
+						Auburn
+					</div>
+					<div class="checkbox color" id="color-blonde" style="margin-top: 0px;padding-left:0px" onclick="setProductType('Blonde')">
+						<input type="radio" id="Blonde" name="Color" value="BLN">
+						<%= image_tag 'color-blonde.png', :clas=>"colorimg"%>
+						Blonde
+					</div>
+					<div class="checkbox color" id="color-lghtblonde" style="margin-top: 0px;padding-left:0px" onclick="setProductType('Light Blonde')">
+						<input type="radio" id="LightBlonde" name="Color" value="LTBLN">
+						<%= image_tag 'color-light-blonde.png', :clas=>"colorimg"%>
+						Light Blonde
+					</div>
+				</div>
+				<div id="oneRadio" style="display: none;">
+					<div class="FormSubHeadlineL">
+						Choose your color
+					</div>
+					<div class="product grid flex space wrap">
+						<div class="checkbox color" id="color-jetblack" style="text-align: center">
+							<%= image_tag 'color-jet-black.png', :clas=>"colorimg"%>
+							<label for="ActionQuantity1" style="width:40px">
+								<select class="cardExpirationMonth ddl ddl" id="ActionQuantity1" name="ActionQuantity1" data-index="1" onchange="onChangeQty()">
+									<option>0</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+								</select>
+								<p>
+									Jet Black
+								</p> </label>
+						</div>
+						<div class="checkbox color" id="color-black" style="margin-top: 7px;margin-bottom: 0px">
+							<%= image_tag 'color-black.png', :clas=>"colorimg"%>
+							<label for="ActionQuantity2" style="width:40px;margin-left:-2px">
+								<select class="cardExpirationMonth ddl ddl" id="ActionQuantity2" name="ActionQuantity2" data-index="2" onchange="onChangeQty()">
+									<option>0</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+								</select>
+								<p>
+									Black
+								</p> </label>
+						</div>
+						<div class="checkbox color" id="color-dkbrown" style="margin-top: 7px;margin-bottom: 0px">
+							<%= image_tag 'color-dark-brown.png', :clas=>"colorimg"%>
+							<label for="ActionQuantity3" style="width:40px;margin-left:-2px">
+								<select class="cardExpirationMonth ddl ddl" id="ActionQuantity3" name="ActionQuantity3" data-index="3" onchange="onChangeQty()">
+									<option>0</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+								</select>
+								<p>
+									Dark Brown
+								</p> </label>
+						</div>
+						<div class="checkbox color" id="color-brown" style="margin-top: 7px;margin-bottom: 0px">
+							<%= image_tag 'color-brown.png', :clas=>"colorimg"%>
+							<label for="Brown" style="width:40px;margin-left:-2px">
+								<select class="cardExpirationMonth ddl ddl" id="ActionQuantity4" name="ActionQuantity4" data-index="4" onchange="onChangeQty()">
+									<option>0</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+								</select>
+								<p>
+									Brown
+								</p> </label>
+						</div>
+						<div class="checkbox color" id="color-lghtbrown" style="margin-top: 7px;margin-bottom: 0px">
+							<%= image_tag 'color-light-brown.png', :clas=>"colorimg"%>
+							<label for="LightBrown" style="width:40px;margin-left:-2px">
+								<select class="cardExpirationMonth ddl ddl" id="ActionQuantity5" name="ActionQuantity5" data-index="5" onchange="onChangeQty()">
+									<option>0</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+								</select>
+								<p>
+									Light Brown
+								</p> </label>
+						</div>
+						<div class="checkbox color" id="color-auburn" style="margin-top: 7px;margin-bottom: 0px">
+							<%= image_tag 'color-auburn.png', :clas=>"colorimg"%>
+							<label for="ActionQuantity6" style="width:40px;margin-left:-2px">
+								<select class="cardExpirationMonth ddl ddl" id="ActionQuantity6" name="ActionQuantity6" data-index="6" onchange="onChangeQty()">
+									<option>0</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+								</select>
+								<p>
+									Auburn
+								</p> </label>
+						</div>
+						<div class="checkbox color" id="color-blonde" style="margin-top: 7px;margin-bottom: 0px">
+							<%= image_tag 'color-blonde.png', :clas=>"colorimg"%>
+							<label for="ActionQuantity7" style="width:40px;margin-left:-2px">
+								<select class="cardExpirationMonth ddl ddl" id="ActionQuantity7" name="ActionQuantity7" data-index="7" onchange="onChangeQty()">
+									<option>0</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+								</select>
+								<p>
+									Blonde
+								</p> </label>
+						</div>
+						<div class="checkbox color" id="color-lghtblonde" style="margin-top: 7px;margin-bottom: 0px">
+							<%= image_tag 'color-light-blonde.png', :clas=>"colorimg"%>
+							<input id="ActionCode8" name="ActionCode8" type="hidden" value="OTLTBLN">
+							<label for="ActionQuantity8" style="width:40px;margin-left:-2px">
+								<select class="cardExpirationMonth ddl ddl" id="ActionQuantity8" name="ActionQuantity8" data-index="8" onchange="onChangeQty()">
+									<option>0</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+								</select>
+								<p>
+									Light Blonde
+								</p> </label>
+						</div>
+					</div>
+				</div>
+		</div>
+		<!-- END id="productSelection" -->
+
+		<div id="reviewOrder">
+			<div class="FormHeadlineL">
+				<strong>STEP 2:</strong>
+				<br>
+				Review your order
+			</div>
+
+			<style>
+				.alignTextRight {
+					text-align: right;
+				}
+
+				.alignTextLeft {
+					text-align: left;
+				}
+			</style>
+
+			<table id="orderReview" class="orderItemsTable reviewTable">
+				<thead class="reviewTableHead">
+					<tr>
+						<th>Item</th>
+						<th>Quantity</th>
+
+						<th>Price</th>
+
+						<th>P&amp;H</th>
+
+					</tr>
+				</thead>
+				<tbody class="reviewTableBody" id="cartTR">
+					<%= render "product_cart" %>
+				</tbody>
+				<tfoot class="reviewTableFoot alignTextRight" id="totalDiv">
+					<%= render "total_price"%>
+
+				</tfoot>
+			</table>
+
+			<div id="orderFormReviewTableItems"></div>
+		</div>
+ 
+		<p class="indicate">
+			<span>*</span>Indicates Required Field
+		</p>
+		<div style="text-align: center;" class="FormSubmit">
+			<span id="submitBtn"> <%= image_tag 'submit_button_off.gif', :onclick=>'onClickAgentOrder()', :id=>'submit_button'%> </span>
+			<p id="click">
+				By clicking Process Order, your credit card will be charged the amount above. Click only once.
+			</p>
+		</div>
+		<div id="SSL" style="text-align: center;">
+			<p>
+				<%= image_tag 'PositiveSSL_tl_trans.png'%>
+			</p>
+
+		</div>
+		</form>
+	</div>
+	<div id="formProduct">
+
+		<div id="paymentForm">
+			<div class="FormHeadlineL">
+				<strong>STEP 3:</strong>
+				<br>
+				Please enter your credit card information
+			</div>
+			<div id="cc" style="width: 90%;">
+				<%= image_tag 'visa.png', :style=>"width: 37px;"%>
+				<%= image_tag 'mastercard.png', :style=>"width: 37px;"%>
+				<%= image_tag 'amex.png', :style=>"width: 37px;display:none;"%>
+				<%= image_tag 'discover.png', :style=>"width: 37px;"%>
+			</div>
+
+			<div id="CardNumberCt" class="fldCt required">
+				<label class="label" style="color: #000;font-weight: normal;font-size:100%"><span class="requiredIcon">*</span>Card Number<span class="labelColon">:</span></label><span class="fld">
+					<input id="CardNumber" name="CardNumber" placeholder="#################" type="text" value="" style="width:165px">
+				</span>
+			</div>
+			<div id="CardExpirationCt" class="fldCt required">
+				<label class="label" style="color: #000;font-weight: normal;font-size:100%"><span class="requiredIcon">*</span>Expiration Date<span class="labelColon">:</span></label><span class="fld">
+					<select id="CardExpirationMonth" name="CardExpirationMonth">
+						<option value="01">01 - Jan</option>
+						<option value="02">02 - Feb</option>
+						<option value="03">03 - Mar</option>
+						<option value="04">04 - Apr</option>
+						<option value="05">05 - May</option>
+						<option value="06">06 - Jun</option>
+						<option value="07">07 - Jul</option>
+						<option value="08">08 - Aug</option>
+						<option value="09">09 - Sep</option>
+						<option value="10">10 - Oct</option>
+						<option value="11">11 - Nov</option>
+						<option value="12">12 - Dec</option>
+					</select>
+					<select class="cardExpirationMonth" id="CardExpirationYear" name="CardExpirationYear">
+						<option>2015</option><option>2016</option><option>2017</option><option>2018</option><option>2019</option><option>2020</option><option>2021</option><option>2022</option><option>2023</option><option>2024</option><option>2025</option>
+					</select> </span>
+			</div>
+			<div id="CardCvv2Ct" class="fldCt required">
+				<label class="label" style="color: #000;font-weight: normal;font-size:100%"><span class="requiredIcon">*</span>CVV2<span class="labelColon">:</span></label><span class="fld">
+					<input id="CardCvv2" maxlength="5" name="CardCvv2" placeholder="CVV2" type="text" value="">
+				</span>
+			</div>
+			<input type="hidden" id="CardType" name="CardType" value="">
+		</div>
+		<!-- END id="paymentForm" -->
+		<div id="billingInformation">
+			<div class="FormHeadlineL">
+				<strong>STEP 4:</strong>
+				<br>
+				Please enter your billing information
+			</div>
+			<div class="fldCt required">
+				<label class="label" style="color: #000;font-weight: normal;font-size:100%"><span class="requiredIcon">*</span>First Name<span class="labelColon">:</span></label><span class="fld">
+					<input id="first_name" maxlength="50" name="first_name" type="text" value="" placeholder="*First Name:">
+				</span>
+			</div>
+
+			<div class="fldCt required">
+				<label class="label" style="color: #000;font-weight: normal;font-size:100%"><span class="requiredIcon">*</span>Last Name<span class="labelColon">:</span></label><span class="fld">
+					<input id="last_name" maxlength="50" name="last_name" type="text" value="" placeholder="*Last Name:">
+				</span>
+			</div>
+
+			<div class="fldCt required">
+				<label class="label" style="color: #000;font-weight: normal;font-size:100%"><span class="requiredIcon">*</span>Address1<span class="labelColon">:</span></label><span class="fld">
+					<input id="address1" maxlength="50" name="address1" type="text" value="" placeholder="*Address1:">
+				</span>
+			</div>
+
+			<div class="fldCt required">
+				<label class="label" style="color: #000;font-weight: normal;font-size:100%"><span class="requiredIcon">*</span>Address2<span class="labelColon">:</span></label><span class="fld">
+					<input id="address2" maxlength="50" name="address2" type="text" value="" placeholder="Address2:">
+				</span>
+			</div>
+
+			<div class="fldCt required">
+				<label class="label" style="color: #000;font-weight: normal;font-size:100%"><span class="requiredIcon">*</span>Email<span class="labelColon">:</span></label><span class="fld">
+					<input id="email" maxlength="50" name="email" type="text" value="" placeholder="*Email:">
+				</span>
+			</div>
+
+			<div class="fldCt required">
+				<label class="label" style="color: #000;font-weight: normal;font-size:100%"><span class="requiredIcon">*</span>Country<span class="labelColon">:</span></label><span class="fld"> <%= country_select_tag :cb_country, { priority_countries: ["US", "UK"], selected: "US" }, { class: 'form-control required'} %> </span>
+			</div>
+
+			<div class="fldCt required">
+				<label class="label" style="color: #000;font-weight: normal;font-size:100%"><span class="requiredIcon">*</span>State<span class="labelColon">:</span></label><span class="fld">
+					<div id="state_td">
+						<%= render partial: 'state', locals: {parent_region: 'US'} %>
+					</div> </span>
+			</div>
+
+			<div class="fldCt required">
+				<label class="label" style="color: #000;font-weight: normal;font-size:100%"><span class="requiredIcon">*</span>City<span class="labelColon">:</span></label><span class="fld">
+					<input id="city" maxlength="50" name="city" type="text" value="" placeholder="*City:">
+				</span>
+			</div>
+
+			<div class="fldCt required">
+				<label class="label" style="color: #000;font-weight: normal;font-size:100%"><span class="requiredIcon">*</span>Zip<span class="labelColon">:</span></label><span class="fld">
+					<input id="zip" maxlength="50" name="zip" type="text" value="" placeholder="*Zip:">
+				</span>
+			</div>
+
+			<div class="fldCt required">
+				<label class="label" style="color: #000;font-weight: normal;font-size:100%"><span class="requiredIcon">*</span>Phone<span class="labelColon">:</span></label><span class="fld">
+					<input id="phone" maxlength="50" name="phone" type="text" value="" placeholder="*Phone:">
+				</span>
+			</div>
+
+		</div>
+	</div>  
+	<div class="clearer"></div>
+</div>
+<div class="clearer"></div>
+</div>
 
 <script type="text/javascript">
-	$( document ).ready(function() { 
-	$("#cb_country" ).change(function() { 
-		country = $("#cb_country").val();
+	$(document).ready(function() {
+		$("#cb_country").change(function() {
+			country = $("#cb_country").val();
 			$.ajax({
-		    	type: "GET",
-		        url: "/get_states?parent_region="+ country,
-		        dataType: "script",
-		    });
-		}); 
-	});
+				type : "GET",
+				url : "/get_states?parent_region=" + country,
+				dataType : "script",
+			});
+		});
+	}); 
 </script>

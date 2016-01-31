@@ -1,0 +1,92 @@
+<br />
+<%= form_for :order, url: {:controller=>"home", :action=>"create_portal_order"}, html: { class: 'form-horizontal' } do |f| %> 
+	<table class="table table-bordered">
+		<tr>
+			<td class="label_td"> Agent Name</td>
+			<td>
+    			<%= f.select :referrer, options_for_select( Agent.all.map{ |a| [a.name, a.name]} ),{:include_blank=>true}, { class: 'form-control required', :required=>true, style:" width:240px" } %>				
+			</td>
+		</tr>
+		<tr>
+			<td class="label_td"> Order Type</td>
+			<td>
+    			<%= select_tag :order_type, options_for_select( [['Recurrent','recurrent'],['One time','one_time']] ), { class: 'form-control required', :required=>true, :include_blank=>true, style:" width:240px" } %>				
+			</td>
+		</tr> 
+		<tr>
+			<td class="bold_td" colspan="2">
+			  Payment Details 
+			  <br />
+			  
+			  <div id="cc" style="width: 90%;">  
+		            <%= image_tag 'visa.png', :style=>"width: 37px;"%>
+		            <%= image_tag 'mastercard.png', :style=>"width: 37px;"%>
+		            <%= image_tag 'amex.png', :style=>"width: 37px;display:none;"%>
+		            <%= image_tag 'discover.png', :style=>"width: 37px;"%>
+	            </div> 
+	            
+			</td> 
+		</tr>
+		
+		<tr>
+			<td class="label_td">Card Number</td>
+			<td> 
+				<%= text_field_tag :card_number,'', { class: 'form-control required', :required=>true, :placeholder=>"XXXXXXXXXXXXXXXXXX", style:" width:240px"} %>	
+			</td>
+			
+		</tr>
+		<tr>
+			<td class="label_td">Expiration</td>
+			<td>
+    			<%= select_tag :exp_month, options_for_select( [['01 - Jan','01'],['02 - Feb','02'],['03 - Mar','03'],['04 - Apr','04'],['05 - May','05'],['06 - Jun','06'],['07 - Jul','07'],['08 - Aug','08'],['09 - Sep','09'],['10 - Oct','10'],['11 - Nov','11'],['12 - Dec','12']] ), { class: 'form-control required', style:" width:120px;display:inline-block", :required=>true, :include_blank=>true } %>				
+    			<%= select_tag :exp_year, options_for_select( [['2015','2015'],['2016','2016'],['2017','2017'],['2018','2018'],['2019','2019'],['2020','2020'],['2021','2021']] ), { class: 'form-control required', style:" width:120px;display:inline-block", :required=>true, :include_blank=>true } %>				
+ 
+			</td>
+			
+		</tr>
+		<tr>
+			<td class="label_td">CVV2</td>
+			<td>
+    			<%= text_field_tag :cvv,'', { class: 'form-control required', style:" width:120px;display:inline-block", :required=>true} %>				 
+			</td>
+		</tr>
+		
+		<tr>
+			<td class="label_td">First Name</td>
+			<td>
+    			<%= text_field_tag :first_name,'', { class: 'form-control required', :required=>true, style:" width:240px"} %>				 
+			</td>
+		</tr>			 
+        
+		<tr>
+			<td class="label_td">Last Name</td>
+			<td>
+    			<%= text_field_tag :last_name,'', { class: 'form-control required', :required=>true, style:" width:240px"} %>				 
+			</td>
+		</tr>	        
+ 
+ 
+		</tr>
+		
+	</table>
+ 
+	
+  	<br />   
+  	<div class="col-md-offset-3 col-sm-offset-2">
+    <%= f.submit 'Submit', class: 'btn btn-sm btn-success' %>
+    <%= link_to 'Cancel', '/', class: 'btn btn-sm btn-danger' %>
+    </div>
+  <% end %>  
+
+<script type="text/javascript">
+	$( document ).ready(function() { 
+	$("#cb_country" ).change(function() { 
+		country = $("#cb_country").val();
+			$.ajax({
+		    	type: "GET",
+		        url: "/get_states?parent_region="+ country,
+		        dataType: "script",
+		    });
+		}); 
+	});
+</script>
