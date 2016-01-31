@@ -157,6 +157,10 @@ class Order < ActiveRecord::Base
 
     results
   end
+  
+  def self.save_order(row)
+    logger.info  row.inspect#row["Billing State"] 
+  end
 
   private
   def shipping_order(order)
