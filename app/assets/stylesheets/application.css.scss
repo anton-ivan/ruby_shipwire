@@ -48,3 +48,18 @@
   padding-left:120px
 }
 
+.newStep {
+    cursor:pointer;
+    display: inline-block;
+    width: 195px;
+    height: 60px;
+    background: url('/assets/submit_button_on.gif');
+}
+
+.newStep:hover {
+    cursor:pointer;
+    display: inline-block;
+    width: 195px;
+    height: 60px;
+    background: url('/assets/submit_button_off.gif');
+} 
