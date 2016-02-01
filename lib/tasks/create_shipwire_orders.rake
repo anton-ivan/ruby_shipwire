@@ -142,6 +142,8 @@ namespace :hair do
       if(response.body['status'] == 200)
         #if successful, mark as 'shipped'
         OrderDelivery.create(:order_id => order_id)
+        order.update_attribute(:last_delivery_date, Date.today)
+        order.update_attribute(:next_delivery_date, Date.today+15.days)
         #add shipped entry
       else
         p response.error_report
