@@ -58,16 +58,18 @@ class OrdersController < ApplicationController
             @orderer.stripe_id = stripe_customer.id
             @orderer.save
             if session[:product_cart][:type] == "recurrent"  
-               unit_price = ProductPrice.first.recurrent_price
+              #its free for first time
+               unit_price = 0
             end 
           end   
           total_price = 0 
           product = nil
           if session[:product_cart]
             if session[:product_cart][:type] == "recurrent" 
-              product = Product.where(:product_name=>session[:product_cart][:name],:product_type=>'recurrent').first
+              #update here kk
+              product = Product.where(:description=>session[:product_cart][:name],:product_type=>'recurrent').first
               if product  
-                total_price = ProductPrice.first.recurrent_price*100
+                total_price = 0
               end  
             else
               if session[:product_cart][:products]
@@ -78,11 +80,14 @@ class OrdersController < ApplicationController
               end
             end
           end   
+           
+          #only p&h fee for recurrent plan 
+          total_price = 8.95*100 if session[:product_cart][:type] == "recurrent" 
           if total_price > 0
             if session[:product_cart][:type] == "recurrent"  
-              @order = Order.new(:orderer_id=>@orderer.id, :orderer_type=>"Agent", :order_type=>"recurrent",:first_delivery_date=>Date.today+30.days)  
+              @order = Order.new(:orderer_id=>@orderer.id, :orderer_type=>"Customer", :order_type=>"recurrent",:first_delivery_date=>Date.today+30.days)  
             else
-              @order = Order.new(:orderer_id=>@orderer.id, :orderer_type=>"Agent", :order_type=>"normal")          
+              @order = Order.new(:orderer_id=>@orderer.id, :orderer_type=>"Customer", :order_type=>"normal")          
             end 
             #set price to stripe
             total_price = total_price
@@ -99,16 +104,21 @@ class OrdersController < ApplicationController
             @order.save  
             if session[:product_cart][:type] == "recurrent" 
               cc = CustomerCard.new(:card_number=>params[:card_number], :ccv=>params[:cvv], :exp_month=>params[:month], :exp_year=>params[:exp_year], :customer_id=>@orderer.id)
-              cc.save  
-                
-              order_item = OrderItem.new(:order_id=>@order.id,:tax=>session[:product_cart][:tax].to_f*100, :product_id=>product.id,:quantity=>1, :price=>ProductPrice.first.recurrent_price*100)
-              order_item.save        
+              cc.save    
+              order_item = OrderItem.new(:order_id=>@order.id,:tax=>session[:product_cart][:tax].to_f*100, :product_id=>product.id,:quantity=>1, :price=>0)
+              order_item.save       
+              
+              #get free optimizer
+              optimizer = Product.where(:description=>"Optimizer").first
+              order_item = OrderItem.new(:order_id=>@order.id,:tax=>session[:product_cart][:tax].to_f*100, :product_id=>optimizer.id,:quantity=>1, :price=>0)
+              order_item.save 
+               
             else 
               @processed = true  
               if session[:product_cart]
                 if session[:product_cart][:products]
-                  session[:product_cart][:products].each do |p|  
-                    product = Product.where("product_type='normal'").where(:description=>p[:name]).first
+                  session[:product_cart][:products].each do |p|   
+                    product = Product.where("product_type = 'normal'").where(:description=>p[:name]).first 
                     order_item = OrderItem.new(:order_id=>@order.id,:tax=>p[:tax].to_f*100, :product_id=>product.id,:quantity=>p[:quantity], :price=>p[:price].to_f*100)
                     order_item.save
                   end 
@@ -120,6 +130,7 @@ class OrdersController < ApplicationController
           end
           
         rescue Stripe::CardError => e
+          @credit_card.destroy
           # Since it's a decline, Stripe::CardError will be caught
           body = e.json_body
           err  = body[:error]
@@ -134,7 +145,7 @@ class OrdersController < ApplicationController
           @err_string = err[:message] 
           end 
         end  
-      end        
+      end    
   end
   
   def create_order  
@@ -249,8 +260,7 @@ class OrdersController < ApplicationController
               @processed = true  
               if session[:product_cart]
                 if session[:product_cart][:products]
-                  session[:product_cart][:products].each do |p|  
-                    logger.info p[:name]
+                  session[:product_cart][:products].each do |p|   
                     product = Product.where("product_type = 'normal'").where(:description=>p[:name]).first 
                     order_item = OrderItem.new(:order_id=>@order.id,:tax=>p[:tax].to_f*100, :product_id=>product.id,:quantity=>p[:quantity], :price=>p[:price].to_f*100)
                     order_item.save
