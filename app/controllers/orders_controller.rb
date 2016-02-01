@@ -212,7 +212,7 @@ class OrdersController < ApplicationController
               end
             end
           end   
-          
+           
           #only p&h fee for recurrent plan 
           total_price = 8.95*100 if session[:product_cart][:type] == "recurrent" 
           if total_price > 0
@@ -288,12 +288,7 @@ class OrdersController < ApplicationController
         if order 
           total_price = upsell.price + 395
           orderer = order.orderer  
-          customer_card = CustomerCard.find_by_customer_id orderer.id  
-          
-          logger.info customer_card.inspect
-          logger.info ",,,,,,ccv-,,#{customer_card.ccv},,,,,,,,,"
-          logger.info ",,,,,,exp month-,,#{customer_card.exp_month},,,,,,,,,"
-          logger.info ",,,,,,exp year-,,#{customer_card.exp_year},,,,,,,,,"
+          customer_card = CustomerCard.find_by_customer_id orderer.id   
           
           charge = Stripe::Charge.create( 
             amount: total_price.to_i,
@@ -311,6 +306,7 @@ class OrdersController < ApplicationController
           render "second_upsell" 
       elsif params[:number].to_i == 2 
         if order.order_type == "recurrent"
+          OrderMailer.order_receipt(session[:order_id]).deliver! 
           render "final_thanks"
         else
           render "third_upsell"
