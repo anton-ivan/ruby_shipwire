@@ -8,6 +8,11 @@ class OrderMailer < ActionMailer::Base
     mail(to: @order.orderer.email, subject: 'Hair Illusion Order')
   end
   
+  def error_generated(errors,order_id)
+    order = Order.find order_id
+    mail(to: ["kumar234557@gmail.com"], subject: '#{errors}')    
+  end
+  
   def order_receipt(order_id) 
     @order = Order.find order_id
     if @order
