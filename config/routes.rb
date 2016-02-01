@@ -10,7 +10,7 @@ Hairillusion::Application.routes.draw do
   
   get '/distributors/subregion_options' => 'distributors#subregion_options'
 
-  get '/portal' => 'home#portal' 
+  get '/agent' => 'home#portal' 
   post 'home/create_portal_order'
   
   get '/faq' => 'home#faq'
