@@ -65,3 +65,24 @@ function onCancelUpsell(page)
         dataType: "script",
     	}); 
 }
+
+function onEnterAgent(e)
+{
+	if (!$("#agent_id").val())
+	{
+		alert("please enter agent id/name");
+		e.preventDefault();
+		e.stopPropagation(); 
+		return;
+	
+	}
+	else
+	{
+		 $.ajax({
+          url: "/get_agent_form",
+          data: { 
+              agent_id: $("#agent_id").val()
+          }
+      });
+	}
+}

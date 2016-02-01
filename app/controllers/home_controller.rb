@@ -72,8 +72,26 @@ class HomeController < ApplicationController
       @forums = Forum.where(:domain_name=>"hairillusion.net",:approved=>true, :country=>params[:search][:country], :state=>params[:order][:state])#.paginate(per_page: 2, page: params[:page])
     end
   end
+  
   def new_forum
     @forum = Forum.new
+  end
+  
+  def get_agent_form
+    agent = Agent.where("name = ?", params[:agent_id]).first  
+    if agent
+      @agent_name = agent.name
+    else
+      @agent = Agent.create(:name=>params[:agent_id])
+      @agent_name = @agent.name
+    end 
+    
+    session[:cart] = nil
+    @orderer = Customer.new
+    @order = @orderer.orders.build(order_items_attributes: [quantity: 1])
+    @credit_card = CreditCard.new
+    @distributor = Distributor.new     
+    session[:product_cart] = nil
   end
   
   def save_forum
