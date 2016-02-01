@@ -193,6 +193,7 @@ function onClickOrder()
  
 	if(error == "")
 	{ 
+		document.getElementById("submit_button").src = "assets/Processing.gif"; 
 		$("#AcceptOfferButton").hide();
 			$.ajax({
           type: "post",
