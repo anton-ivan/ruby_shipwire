@@ -6,7 +6,7 @@
   <% elsif country.subregions? %>
     <%= subregion_select(:country, :state, parent_region, :style=>"height:17px") %>
   <% else %>
-    <%= text_field(:order, :state) %>
+    <%= text_field(:country, :state) %>
   <% end %>
 </div> 
 <style type="text/css">

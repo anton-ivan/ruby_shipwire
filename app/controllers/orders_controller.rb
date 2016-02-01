@@ -199,7 +199,7 @@ class OrdersController < ApplicationController
           if session[:product_cart]
             if session[:product_cart][:type] == "recurrent" 
               #update here kk
-              product = Product.where(:product_name=>session[:product_cart][:name],:product_type=>'recurrent').first
+              product = Product.where(:description=>session[:product_cart][:name],:product_type=>'recurrent').first
               if product  
                 total_price = 0
               end  
@@ -212,6 +212,9 @@ class OrdersController < ApplicationController
               end
             end
           end   
+          
+          #only p&h fee for recurrent plan 
+          total_price = 8.95*100 if session[:product_cart][:type] == "recurrent" 
           if total_price > 0
             if session[:product_cart][:type] == "recurrent"  
               @order = Order.new(:orderer_id=>@orderer.id, :orderer_type=>"Customer", :order_type=>"recurrent",:first_delivery_date=>Date.today+30.days)  
@@ -259,6 +262,7 @@ class OrdersController < ApplicationController
           end
           
         rescue Stripe::CardError => e
+          @credit_card.destroy
           # Since it's a decline, Stripe::CardError will be caught
           body = e.json_body
           err  = body[:error]
@@ -285,11 +289,18 @@ class OrdersController < ApplicationController
           total_price = upsell.price + 395
           orderer = order.orderer  
           customer_card = CustomerCard.find_by_customer_id orderer.id  
+          
+          logger.info customer_card.inspect
+          logger.info ",,,,,,ccv-,,#{customer_card.ccv},,,,,,,,,"
+          logger.info ",,,,,,exp month-,,#{customer_card.exp_month},,,,,,,,,"
+          logger.info ",,,,,,exp year-,,#{customer_card.exp_year},,,,,,,,,"
+          
           charge = Stripe::Charge.create( 
             amount: total_price.to_i,
             description: upsell.description,
             currency: 'usd',
-            card: { name: customer_card.card_name, number:customer_card.card_number, cvc:customer_card.ccv, exp_month:customer_card.exp_month, exp_year:customer_card.exp_year}
+            card: { name: customer_card.card_name, number:customer_card.card_number, cvc:customer_card.ccv, 
+              exp_month:customer_card.exp_month, exp_year:customer_card.exp_year}
           ) 
           order_item = OrderItem.new(:order_id=>order.id,:tax=>3.95.to_f*100, :product_id=>upsell.id,:quantity=>1, :price=>upsell.price.to_f)
           order_item.save
