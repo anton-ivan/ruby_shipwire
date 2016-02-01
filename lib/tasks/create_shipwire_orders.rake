@@ -113,10 +113,10 @@ namespace :hair do
           # Invoiced amounts (for customs declaration only)
           :commercialInvoice    => {
               # Amount for shipping service
-              :shippingValue    => 4.85,
+              :shippingValue    => 8.95,
               # Amount for insurance
-              :insuranceValue    => 6.57,
-              :additionalValue    => 8.29,
+              :insuranceValue    => 0,
+              :additionalValue    => 0,
               # Currencies to interpret the amounts above
               :shippingValueCurrency    => "USD",
               :insuranceValueCurrency    => "USD",
