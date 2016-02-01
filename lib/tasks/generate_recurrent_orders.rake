@@ -1,6 +1,6 @@
 namespace :hair do 
   task :generate_recurrent_orders => :environment do
-     orders = Order.where("order_type ='recurrent' and next_delivery_date =? and last_delivery_date < ?", Date.today, Date.today)
+     orders = Order.where("order_type ='recurrent' and next_delivery_date =? and last_delivery_date < ? and cancelled=false", Date.today, Date.today)
      orders.each do |order|
         @orderer = order.customer
         if @orderer.stripe_id.blank? 
