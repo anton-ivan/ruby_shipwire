@@ -50,6 +50,7 @@ function onClickBuyUpsell(event, user_id,order_id)
 
 function onBuyUpsell(page,number)
 {
+	$("#onBuyUpsell").attr('disabled', true);
 	$.ajax({
     	type: "GET",
         url: "/buy_upsell?type="+page+"&number="+number ,
