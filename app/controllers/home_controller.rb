@@ -174,9 +174,9 @@ class HomeController < ApplicationController
       session[:product_cart][:type] = params[:type] 
       if params[:type].to_s == "recurrent"  
         session[:product_cart][:name] = params[:val] #+ " - HAIR ILLUSION – FREE SHIPPING + BONUS HAIRLINE OPTIMIZER"
-        session[:product_cart][:price] = 29.95
-        session[:product_cart][:tax] = 0
-        session[:product_cart][:total] = 29.95
+        session[:product_cart][:price] = 0
+        session[:product_cart][:tax] = 8.95
+        session[:product_cart][:total] = 8.95 
       else
         session[:product_cart][:products] = []
         if params[:jet_black].to_i > 0
@@ -220,14 +220,15 @@ class HomeController < ApplicationController
         end
         
       end
-    else
+    else 
       session[:product_cart][:type] = params[:type]
       if params[:type] == "recurrent"
         session[:product_cart][:product_type] = params[:type]
-        session[:product_cart][:name] = params[:val] + " - HAIR ILLUSION – FREE SHIPPING + BONUS HAIRLINE OPTIMIZER"
+        session[:product_cart][:name] = params[:val] #+ " - HAIR ILLUSION – FREE SHIPPING + BONUS HAIRLINE OPTIMIZER"
         session[:product_cart][:product_name] = params[:val]
-        session[:product_cart][:price] = 29.95
-        session[:product_cart][:tax] = 29.95
+        session[:product_cart][:price] = 0
+        session[:product_cart][:tax] = 8.95
+        session[:product_cart][:total] = 8.95
       else
         session[:product_cart][:products] = []
         if params[:jet_black].to_i > 0

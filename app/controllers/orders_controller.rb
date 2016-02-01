@@ -100,13 +100,14 @@ class OrdersController < ApplicationController
             ) 
             @order.stripe_id = charge.id 
             @orderer.save!
-            @order.host = params[:referrer]  
-            @order.save  
+            @order.host = params[:referrer]
+            @order.save   
             if session[:product_cart][:type] == "recurrent" 
+              
               cc = CustomerCard.new(:card_number=>params[:card_number], :ccv=>params[:cvv], :exp_month=>params[:month], :exp_year=>params[:exp_year], :customer_id=>@orderer.id)
-              cc.save    
-              order_item = OrderItem.new(:order_id=>@order.id,:tax=>session[:product_cart][:tax].to_f*100, :product_id=>product.id,:quantity=>1, :price=>0)
-              order_item.save       
+              cc.save     
+              order_item = OrderItem.new(:order_id=>@order.id,:tax=>895, :product_id=>product.id,:quantity=>1, :price=>0) 
+              order_item.save(:validate=>false)  
               
               #get free optimizer
               optimizer = Product.where(:description=>"Optimizer").first
@@ -244,12 +245,13 @@ class OrdersController < ApplicationController
             @order.stripe_id = charge.id 
             @orderer.save!
             @order.host = request.host  
-            @order.save  
+            @order.save   
             if session[:product_cart][:type] == "recurrent" 
+              
               cc = CustomerCard.new(:card_number=>params[:card_number], :ccv=>params[:cvv], :exp_month=>params[:month], :exp_year=>params[:exp_year], :customer_id=>@orderer.id)
-              cc.save    
-              order_item = OrderItem.new(:order_id=>@order.id,:tax=>session[:product_cart][:tax].to_f*100, :product_id=>product.id,:quantity=>1, :price=>0)
-              order_item.save       
+              cc.save     
+              order_item = OrderItem.new(:order_id=>@order.id,:tax=>895, :product_id=>product.id,:quantity=>1, :price=>0) 
+              order_item.save(:validate=>false)  
               
               #get free optimizer
               optimizer = Product.where(:description=>"Optimizer").first
