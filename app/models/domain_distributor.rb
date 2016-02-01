@@ -186,7 +186,7 @@ class DomainDistributor < ActiveRecord::Base
           if item.title == "Hair Illusion Fiber Hold Spray"
             product = Product.where("description = ?", "Hair Illusion Fiber Hold Spray").first  
           else
-            product = Product.where("product_type!='recurrent'").where("lower(description) = ?", item.variant_title.downcase).first  
+            product = Product.where("product_type='normal'").where("lower(description) = ?", item.variant_title.downcase).first  
           end 
           product_id = nil 
           product_id = product.id unless product.nil?   

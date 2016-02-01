@@ -108,7 +108,7 @@ class OrdersController < ApplicationController
               if session[:product_cart]
                 if session[:product_cart][:products]
                   session[:product_cart][:products].each do |p|  
-                    product = Product.where("product_type!='recurrent'").where(:description=>p[:name]).first
+                    product = Product.where("product_type='normal'").where(:description=>p[:name]).first
                     order_item = OrderItem.new(:order_id=>@order.id,:tax=>p[:tax].to_f*100, :product_id=>product.id,:quantity=>p[:quantity], :price=>p[:price].to_f*100)
                     order_item.save
                   end 
@@ -250,7 +250,8 @@ class OrdersController < ApplicationController
               if session[:product_cart]
                 if session[:product_cart][:products]
                   session[:product_cart][:products].each do |p|  
-                    product = Product.where("product_type!='recurrent'").where(:description=>p[:name]).first
+                    logger.info p[:name]
+                    product = Product.where("product_type = 'normal'").where(:description=>p[:name]).first 
                     order_item = OrderItem.new(:order_id=>@order.id,:tax=>p[:tax].to_f*100, :product_id=>product.id,:quantity=>p[:quantity], :price=>p[:price].to_f*100)
                     order_item.save
                   end 

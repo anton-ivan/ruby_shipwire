@@ -27,7 +27,7 @@ class DistributorsController < ApplicationController
     @order = @distributor.orders.build
     @credit_card = CreditCard.new
 
-    Product.where("product_type !='recurrent'").each do |p|
+    Product.where("product_type ='normal'").each do |p|
       @order.order_items<< OrderItem.new(product: p, quantity: 0)
     end
   end

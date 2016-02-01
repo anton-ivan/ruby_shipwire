@@ -192,9 +192,7 @@ function onClickOrder()
 	}
  
 	if(error == "")
-	{
-		document.getElementById("submit_button").style.height = "100px";
-		document.getElementById("submit_button").style.backgroundImage = "url('assets/Processing.gif')";
+	{ 
 		$("#AcceptOfferButton").hide();
 			$.ajax({
           type: "post",

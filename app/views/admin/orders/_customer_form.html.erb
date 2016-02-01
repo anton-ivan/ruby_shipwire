@@ -5,7 +5,7 @@
     <%= form_for @order, url: @customer.new_record? ? admin_orders_path : admin_customer_orders_path(@customer), html: { class: 'form-horizontal' } do |f| %>
       <%= f.fields_for :order_items, @order_item do |oi| %>
         <%= control_group(@order_item, :color, label: 'Select Color') do %>
-		<%= oi.select( "product_id", options_from_collection_for_select(Product.where("product_type!='recurrent'"), "id", "description", @order.order_items[0].product_id), {:include_blank => false}, { :class=>"form-control required"})%>  
+		<%= oi.select( "product_id", options_from_collection_for_select(Product.where("product_type='normal'"), "id", "description", @order.order_items[0].product_id), {:include_blank => false}, { :class=>"form-control required"})%>  
         <% end %>
 
         <%= control_group(@order_item, :color, label: 'Quantity') do %>
