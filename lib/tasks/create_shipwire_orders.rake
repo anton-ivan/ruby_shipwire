@@ -143,7 +143,7 @@ namespace :hair do
         #if successful, mark as 'shipped'
         OrderDelivery.create(:order_id => order_id)
         order.update_attribute(:last_delivery_date, Date.today)
-        order.update_attribute(:next_delivery_date, Date.today+15.days)
+        order.update_attribute(:next_delivery_date, Date.today+30.days)
         #add shipped entry
       else
         p response.error_report

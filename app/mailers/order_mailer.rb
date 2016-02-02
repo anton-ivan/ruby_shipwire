@@ -22,6 +22,15 @@ class OrderMailer < ActionMailer::Base
     mail(to: @order.orderer.email, subject: 'Hair Illusion Order') 
   end
   
+  def admin_notification(order_id) 
+    @order = Order.find order_id
+    if @order
+      @total_price = @order.total_price
+      @shipping_cost = @order.get_shipping_cost
+    end 
+    mail(to: ["kumar234557@gmail.com","ronpass13@gmail.com"], subject: "New order generated from #{@order.host}") 
+  end
+  
   def send_notification(order, total_price)
     @order = order
     @total_price = total_price

@@ -28,7 +28,7 @@ namespace :hair do
             ) 
           end
   
-        OrderMailer.send_notification(@order, total_price).deliver! 
+      OrderMailer.order_receipt(@order.id).deliver! 
       rescue Stripe::CardError => e  
         # Since it's a decline, Stripe::CardError will be caught
         body = e.json_body

@@ -1,4 +1,4 @@
-<% if params[:type] == "Hair Illusion Fiber Hold Spray" %> 
+<% if params[:type] == "Hair Illusion Fiber Hold Spray" || params[:type] == "spray" %> 
 	$("#mainDiv").html("<%= escape_javascript(render('second_upsell')) %>") 
 <%elsif params[:type] == "mirror"%>
 	<% if @order.order_type == "recurrent" %>

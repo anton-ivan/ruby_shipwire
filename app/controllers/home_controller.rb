@@ -180,42 +180,42 @@ class HomeController < ApplicationController
       else
         session[:product_cart][:products] = []
         if params[:jet_black].to_i > 0
-          h = {:name => "Jet Black", :quantity => params[:jet_black].to_i, :price=> @price, :tax => 6.95 }           
+          h = {:name => "Jet Black", :quantity => params[:jet_black].to_i, :price=> @price, :tax => 8.95 }           
           session[:product_cart][:products] << h
         end
         
         if params[:black].to_i > 0
-          h = {:name => "Black", :quantity => params[:black].to_i, :price=> @price, :tax => 6.95 }           
+          h = {:name => "Black", :quantity => params[:black].to_i, :price=> @price, :tax => 8.95 }           
           session[:product_cart][:products] << h
         end
         
         if params[:dark_brown].to_i > 0
-          h = {:name => "Dark Brown", :quantity => params[:dark_brown].to_i, :price=> @price, :tax => 6.95 }           
+          h = {:name => "Dark Brown", :quantity => params[:dark_brown].to_i, :price=> @price, :tax => 8.95 }           
           session[:product_cart][:products] << h
         end
         
         if params[:brown].to_i > 0
-          h = {:name => "Brown", :quantity => params[:brown].to_i, :price=> @price, :tax => 6.95 }           
+          h = {:name => "Brown", :quantity => params[:brown].to_i, :price=> @price, :tax => 8.95 }           
           session[:product_cart][:products] << h
         end
         
         if params[:light_brown].to_i > 0
-          h = {:name => "Light Brown", :quantity => params[:light_brown].to_i, :price=> @price, :tax => 6.95 }           
+          h = {:name => "Light Brown", :quantity => params[:light_brown].to_i, :price=> @price, :tax => 8.95 }           
           session[:product_cart][:products] << h
         end
         
         if params[:aubrown].to_i > 0
-          h = {:name => "Auburn", :quantity => params[:aubrown].to_i, :price=> @price, :tax => 6.95 }           
+          h = {:name => "Auburn", :quantity => params[:aubrown].to_i, :price=> @price, :tax => 8.95 }           
           session[:product_cart][:products] << h
         end
         
         if params[:blonde].to_i > 0
-          h = {:name => "Blonde", :quantity => params[:blonde].to_i, :price=> @price, :tax => 6.95 }           
+          h = {:name => "Blonde", :quantity => params[:blonde].to_i, :price=> @price, :tax => 8.95 }           
           session[:product_cart][:products] << h
         end
         
         if params[:light_blonde].to_i > 0
-          h = {:name => "Light Blonde", :quantity => params[:light_blonde].to_i, :price=> @price, :tax => 6.95 }           
+          h = {:name => "Light Blonde", :quantity => params[:light_blonde].to_i, :price=> @price, :tax => 8.95 }           
           session[:product_cart][:products] << h
         end
         
