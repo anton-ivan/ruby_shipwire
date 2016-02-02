@@ -273,7 +273,7 @@
 			<span>*</span>Indicates Required Field
 		</p>
 		<div style="text-align: center;" class="FormSubmit">
-			<span id="submitBtn"> <%= image_tag 'submit_button_off.gif', :onclick=>'onClickAgentOrder()', :id=>'submit_button'%> </span>
+			<span id="submitBtn"> <%= image_tag 'submit_button_off.gif', :onclick=>"onClickAgentOrder(event,'#{session[:cart]}')", :id=>'submit_button'%> </span>
 			<p id="click">
 				By clicking Process Order, your credit card will be charged the amount above. Click only once.
 			</p>
@@ -323,7 +323,7 @@
 						<option value="12">12 - Dec</option>
 					</select>
 					<select class="cardExpirationMonth" id="CardExpirationYear" name="CardExpirationYear">
-						<option>2015</option><option>2016</option><option>2017</option><option>2018</option><option>2019</option><option>2020</option><option>2021</option><option>2022</option><option>2023</option><option>2024</option><option>2025</option>
+						<option>2016</option><option>2017</option><option>2018</option><option>2019</option><option>2020</option><option>2021</option><option>2022</option><option>2023</option><option>2024</option><option>2025</option>
 					</select> </span>
 			</div>
 			<div id="CardCvv2Ct" class="fldCt required">

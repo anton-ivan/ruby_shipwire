@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
   def create_agent_order
     session[:order_id] = nil
     @errors = []
+    cc = nil
     @err_string = ""
     if session[:product_cart]
       unless params[:email].blank?
@@ -49,7 +50,7 @@ class OrdersController < ApplicationController
         @errors.each do |p|  
           @err_string = @err_string + p[1][0] + "," 
         end  
-      end   
+      end    
        
       if (@errors.nil? || @errors.empty? || @errors == "") && @credit_card.valid?   
         begin 
@@ -102,8 +103,7 @@ class OrdersController < ApplicationController
             @orderer.save!
             @order.host = params[:referrer]
             @order.save   
-            if session[:product_cart][:type] == "recurrent" 
-              
+            if session[:product_cart][:type] == "recurrent"  
               cc = CustomerCard.new(:card_number=>params[:card_number], :ccv=>params[:cvv], :exp_month=>params[:month], :exp_year=>params[:exp_year], :customer_id=>@orderer.id)
               cc.save     
               order_item = OrderItem.new(:order_id=>@order.id,:tax=>895, :product_id=>product.id,:quantity=>1, :price=>0) 
@@ -114,7 +114,7 @@ class OrdersController < ApplicationController
               order_item = OrderItem.new(:order_id=>@order.id,:tax=>session[:product_cart][:tax].to_f*100, :product_id=>optimizer.id,:quantity=>1, :price=>0)
               order_item.save 
                
-            else 
+            else  
               @processed = true  
               if session[:product_cart]
                 if session[:product_cart][:products]
@@ -130,12 +130,13 @@ class OrdersController < ApplicationController
             render "thank_you"
           end
           
-        rescue Stripe::CardError => e
-          @credit_card.destroy
+        rescue Stripe::CardError => e 
           # Since it's a decline, Stripe::CardError will be caught
           body = e.json_body
           err  = body[:error]
           @error = err
+          logger.info @error.inspect
+          @credit_card.destroy if @credit_card
           puts "Status is: #{e.http_status}"
           puts "Type is: #{err[:type]}"
           puts "Code is: #{err[:code]}"
@@ -280,6 +281,7 @@ class OrdersController < ApplicationController
           body = e.json_body
           err  = body[:error]
           @error = err
+          cc.destroy if cc
           puts "Status is: #{e.http_status}"
           puts "Type is: #{err[:type]}"
           puts "Code is: #{err[:code]}"
@@ -290,6 +292,8 @@ class OrdersController < ApplicationController
           @err_string = err[:message] 
           end 
         end  
+      else
+        cc.destroy if cc
       end    
   end
   

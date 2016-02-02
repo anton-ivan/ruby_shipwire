@@ -1,2 +1,9 @@
 $("#cartTR").html(" <%= escape_javascript( render 'product_cart') %>");    
 $("#totalDiv").html(" <%= escape_javascript( render 'total_price') %>");    
+
+
+<% if session[:product_cart] && session[:product_cart][:products] && session[:product_cart][:products].size == 0 %>
+  $("#product_selected").val("false")  
+<%else%> 
+	$("#product_selected").val("true")  
+<%end%>

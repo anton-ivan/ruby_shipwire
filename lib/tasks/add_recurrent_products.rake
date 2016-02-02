@@ -35,6 +35,7 @@ namespace :hair do
     
     p = Product.where(:description=>"Optimizer").first
     p.update_attribute(:product_type,"normal")  
+    p.update_attribute(:price,695)  
     
     p = Product.where(:description=>"Hair Illusion Fiber Hold Spray").first
     p.update_attribute(:product_type,"normal")  

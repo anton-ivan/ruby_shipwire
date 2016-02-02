@@ -159,7 +159,13 @@ class Order < ActiveRecord::Base
   end
   
   def self.save_order(row)
-    logger.info  row.inspect#row["Billing State"] 
+    logger.info row.inspect
+    if row["PayType Multi or Single"] == "Single"
+      puts "single order"
+    else
+      puts "recurrent order"
+    end 
+    
   end
 
   private

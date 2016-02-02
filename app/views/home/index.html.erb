@@ -3,7 +3,7 @@
 <div class="outWrap" id="offerWrap">
   <div class="Wrap">
     <div id="price"> 
-    	
+      <%= hidden_field_tag :product_selected, "false" %>
       <%= image_tag 'hair-illusion-price.png'%>
       <a href="#order" class="ordnwbtn" title="Order Hair Illusion™ Now">Order Now</a>
     </div>
@@ -11,7 +11,7 @@
       <div class="mainshdw">
         <div id="video">
         	<div class="youtube-video">
-					<iframe width="560" height="315" src="//www.youtube.com/embed/s60RC5fdtyc?rel=0&autoplay=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
+					<iframe width="375" height="210" src="//www.youtube.com/embed/s60RC5fdtyc?rel=0&autoplay=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
 				</div>
          </div>
       </div> 
@@ -465,7 +465,7 @@ Only Pay $8.95 For Process/Handing.
         </p>
         <div style="text-align: center;" class="FormSubmit">
             <span id="submitBtn">
-            	<div id="submit_button", onclick='onClickOrder()', class="newStep"></div> 
+            	<div id="submit_button", onclick='onClickOrder(event)', class="newStep"></div> 
             </span>
             <p id="click">By clicking Process Order, your credit card will be charged the amount above. Click only once.</p>
         </div>

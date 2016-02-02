@@ -1,5 +1,5 @@
 class Admin::AgentsController < Admin::ApplicationController  
-  before_action :find_agent, only: [:edit, :update, :destroy]
+  before_action :find_agent, only: [:edit, :update, :destroy, :orders]
   
   def index
     @agents = Agent.all.order("created_at desc").page(params[:page]).per_page(10) 
@@ -17,6 +17,10 @@ class Admin::AgentsController < Admin::ApplicationController
     else
       render action: 'new'
     end
+  end
+  
+  def orders
+    @orders = Order.where("referer =?",@agent.name).page(params[:page]).per_page(10) 
   end
 
   def update
