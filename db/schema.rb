@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160131043548) do
+ActiveRecord::Schema.define(version: 20160201202821) do
 
   create_table "agents", force: true do |t|
     t.string   "name"
@@ -136,14 +136,15 @@ ActiveRecord::Schema.define(version: 20160131043548) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "tax"
+    t.integer  "s_h_cost"
   end
 
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
   add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
 
   create_table "orders", force: true do |t|
-    t.integer  "orderer_id",          null: false
-    t.string   "orderer_type",        null: false
+    t.integer  "orderer_id",                          null: false
+    t.string   "orderer_type",                        null: false
     t.string   "destription"
     t.string   "stripe_id"
     t.datetime "refunded_at"
@@ -156,7 +157,8 @@ ActiveRecord::Schema.define(version: 20160131043548) do
     t.string   "order_type"
     t.date     "first_delivery_date"
     t.date     "next_delivery_date"
-    t.date     "last_develiry_date"
+    t.date     "last_delivery_date"
+    t.boolean  "cancelled",           default: false
   end
 
   add_index "orders", ["orderer_id", "orderer_type"], name: "index_orders_on_orderer_id_and_orderer_type", using: :btree

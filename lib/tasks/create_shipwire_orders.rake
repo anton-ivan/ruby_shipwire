@@ -13,6 +13,7 @@ namespace :hair do
     #get unshipped orders first
     orders = Order.joins("LEFT JOIN order_deliveries ON orders.id = order_deliveries.order_id JOIN customers ON orders.orderer_id = customers.id")
                 .select("orders.id, orderer_id")
+                .where("orders.order_type != 'recurrent' and orders.refunded_at is null and orders.shipment_id is null")
                 .limit(1)
     orders.each do |order|
       #get information
