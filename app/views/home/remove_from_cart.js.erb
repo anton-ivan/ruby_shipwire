@@ -1,3 +1,7 @@
 $("#listTable").html(" <%= escape_javascript( render 'cart') %>"); 
 $("#buy_url").val('<%=@url%>') 
 $("#products_size").val('<%=session[:cart].size%>')
+alert('<%=session[:cart].size%>')
+<% if session[:cart].size == 0 %>
+  $("#product_selected").val("false") 
+<%end%>

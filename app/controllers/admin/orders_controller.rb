@@ -21,8 +21,10 @@ class Admin::OrdersController < Admin::ApplicationController
           @orders = @orderer.orders
         else
           @orders = Order.includes(:orderer)
-        end
-
+        end 
+        logger.info "!!!!!!!!!!!!!!!"
+        logger.info index_params.inspect
+        logger.info index_params.size
         grid_table_for(@orders, index_params)
       end
     end

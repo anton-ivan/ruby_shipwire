@@ -50,9 +50,18 @@ function onClickBuyUpsell(event, user_id,order_id)
 
 function onBuyUpsell(page,number)
 {
-	$("#second_upsell").attr('disabled', true);
-	$("#first_upsell").attr('disabled', true);
-	$("#third_upsell").attr('disabled', true);
+	if(number ==2)
+	{
+		document.getElementById("second_upsell").src = "assets/Processing.gif"
+	}
+	if(number ==3)
+	{
+		document.getElementById("third_upsell").src = "assets/Processing.gif"
+	}
+	if(number ==1)
+	{
+		document.getElementById("first_upsell").src = "assets/Processing.gif"
+	} 
 	
 	$.ajax({
     	type: "GET",

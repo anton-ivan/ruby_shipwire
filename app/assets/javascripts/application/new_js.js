@@ -1,8 +1,7 @@
 function onChangePlan(offer) {   
 	$('#bottom_order_div').hide();
 	$('#top_order_div').hide();
-	if (offer == "bonus") { 
-
+	if (offer == "bonus") {  
 		$('#oneRadio').hide();
 		$('#bonusRadio').show();
 		$('#text').show();
@@ -16,6 +15,7 @@ function onChangePlan(offer) {
      	}); 
 		$('#top_order_div').show(); 
 	} else if (offer == "one") {
+		$('#product_selected').val("false");
 		$('#ActionQuantity0').val(0);
 		$('#bonusRadio').hide();
 		$('#text').hide();
@@ -23,8 +23,7 @@ function onChangePlan(offer) {
 		$('#bottom_order_div').show();
 	} 
 	else 
-	{ 
-
+	{  
 		$('#ActionQuantity0').val(0);
 		$('#ActionQuantity1').val(0);
 		$('#ActionQuantity2').val(0);
@@ -44,6 +43,7 @@ function onChangePlan(offer) {
  
 	function setProductType(type)
 	{
+		$('#product_selected').val("true");
 		$("#orderType").val("recurrent"); 
 		$("#productType").val(type);
 		
@@ -73,8 +73,15 @@ function onChangeQty()
      	}); 
 }
 
-function onClickAgentOrder()
-{
+function onClickAgentOrder(e,cart)
+{    
+	if($('#product_selected').val() == "false")
+	{
+		alert("please select product");
+		e.preventDefault();
+		e.stopPropagation(); 
+		return;
+	}
 	error = ""
 	if (!$("#referrer").val())
 	{
@@ -134,7 +141,7 @@ function onClickAgentOrder()
           url: "/create_agent_order",
           data:{ first_name: $("#first_name").val(), last_name: $("#last_name").val(), address1:$("#address1").val(), 
           		 address2:$("#address2").val(), email:$("#email").val(), cb_country: $("#cb_country").val(), order_state: $("#country_state").val(),
-          		 city: $("#city").val(), zip:$("#zip").val(), phone:$("#phone").val(), card_number:$("#CardNumber").val(), cvv:$("#CardCvv2").val(), month:$("#CardExpirationMonth").val(), exp_year:$("#CardExpirationYear").val()}
+          		 city: $("#city").val(), zip:$("#zip").val(), phone:$("#phone").val(), card_number:$("#CardNumber").val(), cvv:$("#CardCvv2").val(), month:$("#CardExpirationMonth").val(), exp_year:$("#CardExpirationYear").val(), referrer:$("#referrer").val()}
      	}); 
 	}
 	else
@@ -143,8 +150,15 @@ function onClickAgentOrder()
 	}  	
 }
 
-function onClickOrder()
-{   
+function onClickOrder(e)
+{  
+	if($('#product_selected').val() == "false" )
+	{
+		alert("please select product");
+		e.preventDefault();
+		e.stopPropagation(); 
+		return;
+	} 
 	error = ""
 	if (!$("#CardNumber").val())
 	{
@@ -193,6 +207,7 @@ function onClickOrder()
  
 	if(error == "")
 	{ 
+		document.getElementById("submit_button").src = "assets/Processing.gif"; 
 		$("#AcceptOfferButton").hide();
 			$.ajax({
           type: "post",

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Thanks you for your order</title>
+  <title>New order generated</title>
  
 </head>
 <body style="margin: 0 auto; max-width: 550px;padding: 20px 0;">
-  <strong>Thanks for your order</strong>
+  <strong>New order generated from <%=@order.host%></strong>
   <br />
   <br />
   <table style="width: 100%;font-family: verdana,arial,sans-serif;font-size:11px; color:#333333;border-width: 1px; border-color: #666666;border-collapse: collapse;">
@@ -19,21 +19,12 @@
         <th width="20%" style="border-width: 1px; padding: 8px; border-style: solid; border-color: #666666; background-color: #dedede;">Price</th>
         <th width="20%" style="border-width: 1px; padding: 8px; border-style: solid; border-color: #666666; background-color: #dedede;">Total</th>
       </tr>
-    </thead>
-    <tfoot>
-      <tr>
-        <th>
-          <strong>Questions?</strong>
-          Contact Hair Illusion at<br/>
-          <%= mail_to('support@buyhairillusion.com') %><br/>
-        </th>
-        <th colspan="2">
-          <strong>Hair Illusion</strong>
-          <%= link_to 'www.buyhairillusion.com', root_url %><br/>
-        </th>
-      </tr>
-    </tfoot>
-    <tbody>
+    </thead> 
+    <tbody> 
+        <tr>
+          <td style="border-width: 1px; padding: 8px; border-style: solid; border-color: #666666; background-color: #ffffff;">Name: <%= @order.orderer.name%></td>
+          <td colspan="2" style="border-width: 1px; padding: 8px; border-style: solid; border-color: #666666; background-color: #ffffff;">Name: <%= @order.orderer.email%></td>
+ 		</tr>   	
       <% @order.order_items.each do |order_item| %>
         <tr>
           <td style="border-width: 1px; padding: 8px; border-style: solid; border-color: #666666; background-color: #ffffff;"><%= order_item.product.description %> (x<%= order_item.quantity %>)</td>

@@ -77,7 +77,7 @@ Hairillusion::Application.routes.draw do
   namespace :admin do
     
     resources :agents 
-    
+     
     get "/" => "orders#index"
     
     resources :customers, only: [:index, :show, :edit, :update] do
@@ -115,5 +115,11 @@ Hairillusion::Application.routes.draw do
     end
 
     resources :shipments, except: [:destroy]
+    
+    resources :agents do 
+      collection do 
+        get 'orders'
+      end
+    end
   end
 end

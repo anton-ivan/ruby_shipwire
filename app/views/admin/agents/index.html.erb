@@ -15,6 +15,7 @@
       <tr> 
         <td><%= agent.name %></td>
         <td><%= agent.email %></td>  
+         <td><%= link_to 'orders', orders_admin_agents_path(:id=>agent.id) %></td>
         <td><%= link_to 'Edit', edit_admin_agent_path(agent) %></td>
         <td><%= link_to 'Destroy', admin_agent_path(agent), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

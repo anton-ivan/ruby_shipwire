@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
   def create_agent_order
     session[:order_id] = nil
     @errors = []
+    cc = nil
     @err_string = ""
     if session[:product_cart]
       unless params[:email].blank?
@@ -49,7 +50,7 @@ class OrdersController < ApplicationController
         @errors.each do |p|  
           @err_string = @err_string + p[1][0] + "," 
         end  
-      end   
+      end    
        
       if (@errors.nil? || @errors.empty? || @errors == "") && @credit_card.valid?   
         begin 
@@ -85,7 +86,7 @@ class OrdersController < ApplicationController
           total_price = 8.95*100 if session[:product_cart][:type] == "recurrent" 
           if total_price > 0
             if session[:product_cart][:type] == "recurrent"  
-              @order = Order.new(:orderer_id=>@orderer.id, :orderer_type=>"Customer", :order_type=>"recurrent",:first_delivery_date=>Date.today+30.days)  
+              @order = Order.new(:orderer_id=>@orderer.id, :orderer_type=>"Customer", :order_type=>"recurrent",:next_delivery_date=>Date.today)  
             else
               @order = Order.new(:orderer_id=>@orderer.id, :orderer_type=>"Customer", :order_type=>"normal")          
             end 
@@ -102,19 +103,23 @@ class OrdersController < ApplicationController
             @orderer.save!
             @order.host = params[:referrer]
             @order.save   
-            if session[:product_cart][:type] == "recurrent" 
-              
-              cc = CustomerCard.new(:card_number=>params[:card_number], :ccv=>params[:cvv], :exp_month=>params[:month], :exp_year=>params[:exp_year], :customer_id=>@orderer.id)
+            
+            card = CustomerCard.where("customer_id=?",@orderer.id).first
+            unless card
+              cc = CustomerCard.new(:card_name=>@orderer.name, :card_number=>params[:card_number], :ccv=>params[:cvv], :exp_month=>params[:month], :exp_year=>params[:exp_year], :customer_id=>@orderer.id)
               cc.save     
+            else
+              card.update_attributes({card_name: @orderer.name, card_number: params[:card_number], ccv:params[:cvv], exp_month:params[:month], exp_year:params[:exp_year]})
+            end 
+            if session[:product_cart][:type] == "recurrent"   
               order_item = OrderItem.new(:order_id=>@order.id,:tax=>895, :product_id=>product.id,:quantity=>1, :price=>0) 
-              order_item.save(:validate=>false)  
-              
+              order_item.save(:validate=>false)   
               #get free optimizer
               optimizer = Product.where(:description=>"Optimizer").first
               order_item = OrderItem.new(:order_id=>@order.id,:tax=>session[:product_cart][:tax].to_f*100, :product_id=>optimizer.id,:quantity=>1, :price=>0)
               order_item.save 
                
-            else 
+            else  
               @processed = true  
               if session[:product_cart]
                 if session[:product_cart][:products]
@@ -130,12 +135,13 @@ class OrdersController < ApplicationController
             render "thank_you"
           end
           
-        rescue Stripe::CardError => e
-          @credit_card.destroy
+        rescue Stripe::CardError => e 
           # Since it's a decline, Stripe::CardError will be caught
           body = e.json_body
           err  = body[:error]
           @error = err
+          logger.info @error.inspect
+          @credit_card.destroy if @credit_card
           puts "Status is: #{e.http_status}"
           puts "Type is: #{err[:type]}"
           puts "Code is: #{err[:code]}"
@@ -217,19 +223,18 @@ class OrdersController < ApplicationController
               end  
             else
               if session[:product_cart][:products]
-                session[:product_cart][:products].each do |p|  
-                  price = ( p[:quantity].to_f * p[:price].to_f ) + ( p[:quantity].to_f * p[:tax].to_f ) 
+                session[:product_cart][:products].each do |p|   
+                  price = ( p[:quantity].to_f * p[:price].to_f*100 ) + ( p[:quantity].to_f * p[:tax].to_f*100 ) 
                   total_price = total_price + price 
                 end 
               end
             end
-          end   
-           
+          end    
           #only p&h fee for recurrent plan 
           total_price = 8.95*100 if session[:product_cart][:type] == "recurrent" 
-          if total_price > 0
+          if total_price > 0 
             if session[:product_cart][:type] == "recurrent"  
-              @order = Order.new(:orderer_id=>@orderer.id, :orderer_type=>"Customer", :order_type=>"recurrent",:first_delivery_date=>Date.today+30.days)  
+              @order = Order.new(:orderer_id=>@orderer.id, :orderer_type=>"Customer", :order_type=>"recurrent",:next_delivery_date=>Date.today)  
             else
               @order = Order.new(:orderer_id=>@orderer.id, :orderer_type=>"Customer", :order_type=>"normal")          
             end 
@@ -246,10 +251,15 @@ class OrdersController < ApplicationController
             @orderer.save!
             @order.host = request.host  
             @order.save   
-            if session[:product_cart][:type] == "recurrent" 
-              
-              cc = CustomerCard.new(:card_number=>params[:card_number], :ccv=>params[:cvv], :exp_month=>params[:month], :exp_year=>params[:exp_year], :customer_id=>@orderer.id)
+            
+            card = CustomerCard.where("customer_id=?",@orderer.id).first
+            unless card
+              cc = CustomerCard.new(:card_name=>@orderer.name, :card_number=>params[:card_number], :ccv=>params[:cvv], :exp_month=>params[:month], :exp_year=>params[:exp_year], :customer_id=>@orderer.id)
               cc.save     
+            else 
+              card.update_attributes({card_name: @orderer.name, card_number: params[:card_number], ccv:params[:cvv], exp_month:params[:month], exp_year:params[:exp_year]})
+            end
+            if session[:product_cart][:type] == "recurrent"  
               order_item = OrderItem.new(:order_id=>@order.id,:tax=>895, :product_id=>product.id,:quantity=>1, :price=>0) 
               order_item.save(:validate=>false)  
               
@@ -280,6 +290,7 @@ class OrdersController < ApplicationController
           body = e.json_body
           err  = body[:error]
           @error = err
+          cc.destroy if cc
           puts "Status is: #{e.http_status}"
           puts "Type is: #{err[:type]}"
           puts "Code is: #{err[:code]}"
@@ -290,6 +301,8 @@ class OrdersController < ApplicationController
           @err_string = err[:message] 
           end 
         end  
+      else
+        cc.destroy if cc
       end    
   end
   
@@ -302,7 +315,7 @@ class OrdersController < ApplicationController
           total_price = upsell.price + 395
           orderer = order.orderer  
           customer_card = CustomerCard.find_by_customer_id orderer.id   
-          
+          logger.info customer_card.inspect
           charge = Stripe::Charge.create( 
             amount: total_price.to_i,
             description: upsell.description,
@@ -319,13 +332,16 @@ class OrdersController < ApplicationController
           render "second_upsell" 
       elsif params[:number].to_i == 2 
         if order.order_type == "recurrent"
-          OrderMailer.order_receipt(session[:order_id]).deliver! 
+          OrderMailer.order_receipt(session[:order_id]).deliver!  
+          OrderMailer.admin_notification(session[:order_id]).deliver! 
+          
           render "final_thanks"
         else
           render "third_upsell"
         end 
       elsif  params[:number].to_i == 3
         OrderMailer.order_receipt(session[:order_id]).deliver! 
+        OrderMailer.admin_notification(session[:order_id]).deliver! 
         render "final_thanks"
       end
  
@@ -336,6 +352,7 @@ class OrdersController < ApplicationController
     @order = Order.find session[:order_id] 
     if params[:type] == "optimizer" 
       OrderMailer.order_receipt(@order).deliver!  
+      OrderMailer.admin_notification(session[:order_id]).deliver! 
     end  
   end
 

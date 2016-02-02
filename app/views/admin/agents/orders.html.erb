@@ -1,0 +1,25 @@
+<h3>Orders of <%= @agent.name %></h3>
+
+<table class="table table-striped table-bordered table-hover table-condensed grid-table">
+  <thead>
+    <tr> 
+      <th>date</th>
+      <th>Order</th> 
+      <th>details</th> 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ordes.each do |order| %>
+      <tr> 
+        <td><%= order.created_at %></td>
+        <td></td>  
+        <td></td>   
+      </tr>
+    <% end %>
+  </tbody>
+</table> 
+<br>  
+<div class="pagination-center">
+	<%= will_paginate @ordes  %>
+</div>

@@ -1,7 +1,8 @@
 namespace :hair do
   
-  task :add_recurrent_products => :environment do
-    
+  task :live => :environment do
+        
+       
     p = Product.where(:description=>"Jet Black").first
     p.update_attribute(:product_type,"normal")
 
@@ -96,6 +97,15 @@ namespace :hair do
      else
        Product.create(:description=>"Light Blonde", :product_type=>"recurrent", :price=> 00, :product_code=>2099, :weight=>18, :sku=>"713807586652")
      end   
+      
+     p = Product.where(:description=>"Hair Illusion Fiber Hold Spray").first
+     p.update_attribute(:sku,"678021720353")
+
+     p = Product.where(:description=>"Mirror").first
+     p.update_attribute(:sku,"654391270988")
+
+     p = Product.where(:description=>"Optimizer").first
+     p.update_attribute(:sku,"788454232344") 
   end
    
  
